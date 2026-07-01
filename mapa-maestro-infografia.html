@@ -104,8 +104,8 @@
     letter-spacing:0.01em;
   }
   .step:nth-child(1) .dot, .step:nth-child(1) .price{color:var(--c1);}
-  .step:nth-child(2) .dot, .step:nth-child(2) .price{color:var(--c2);}
-  .step:nth-child(3) .dot, .step:nth-child(3) .price{color:var(--c3);}
+  .step:nth-child(2) .dot, .step:nth-child(2) .price{color:#ff6b6b;}
+  .step:nth-child(3) .dot, .step:nth-child(3) .price{color:#b58be6;}
   .step:nth-child(4) .dot, .step:nth-child(4) .price{color:var(--c4);}
   .step:nth-child(5) .dot, .step:nth-child(5) .price{color:var(--c5);}
   .step .name{font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted);}
@@ -116,40 +116,54 @@
     margin-top:44px;
   }
   .card{
+    position:relative; overflow:hidden;
     background:var(--bg-card);
     border:1px solid var(--line);
-    border-top:3px solid var(--accent);
     border-radius:10px;
     padding:22px 18px 20px;
     display:flex; flex-direction:column; gap:14px;
     min-height:100%;
   }
-  .card:nth-child(1){--accent:var(--c1);}
-  .card:nth-child(2){--accent:var(--c2);}
-  .card:nth-child(3){--accent:var(--c3);}
-  .card:nth-child(4){--accent:var(--c4);}
-  .card:nth-child(5){--accent:var(--c5);}
+  .card::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:3px;
+    background:var(--accent);
+  }
+  /* --accent = color puro de marca (bordes/gráficos) · --accent-txt = variante
+     legible del mismo color para TEXTO sobre fondo oscuro (WCAG AA) */
+  .card:nth-child(1){--accent:var(--c1); --accent-txt:#9a9a9a;}
+  .card:nth-child(2){--accent:var(--c2); --accent-txt:#ff6b6b;}
+  .card:nth-child(3){--accent:var(--c3); --accent-txt:#b58be6;}
+  .card:nth-child(4){--accent:var(--c4); --accent-txt:var(--c4);}
+  .card:nth-child(5){--accent:var(--c5); --accent-txt:var(--c5);}
 
   .num{
     font-family:var(--f); font-weight:800; font-size:13px;
-    color:var(--accent); letter-spacing:0.08em;
+    color:var(--accent-txt); letter-spacing:0.08em;
   }
   .stage{
     font-family:var(--f); font-weight:800; font-size:23px;
     line-height:1.05; text-transform:uppercase; letter-spacing:-0.02em;
   }
-  .identity{
-    font-size:15px; color:var(--muted); line-height:1.6; min-height:60px;
-  }
+  .card-top{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  .card-ico{color:var(--accent-txt); flex:0 0 auto; display:flex;}
+  .card-ico svg{width:30px; height:30px;}
+  /* grupo etiqueta + valor dentro de la tarjeta */
+  .field{display:flex; flex-direction:column; gap:4px;}
   .divider{height:1px; background:var(--line);}
   .label{
     font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent);
     font-weight:700;
   }
-  .offer{font-size:15px; line-height:1.6; color:var(--white);}
+  .field .label{color:var(--muted);}          /* etiquetas de campo en gris, quietas */
+  .offer{font-size:15px; line-height:1.55; color:var(--white);}
+  .c-quote{
+    font-size:14px; font-style:italic; line-height:1.5; color:var(--muted);
+    border-left:2px solid var(--accent); padding-left:10px;
+  }
+  .c-format{font-size:12.5px; color:var(--muted); margin-top:1px;}
   .price-tag{
-    font-family:var(--f); font-weight:800; font-size:27px; color:var(--accent);
-    letter-spacing:-0.02em; margin-top:auto;
+    font-family:var(--f); font-weight:800; font-size:27px; color:var(--accent-txt);
+    letter-spacing:-0.02em; margin-top:2px;
   }
   .price-tag small{
     display:block; font-family:var(--f); font-size:11px;
@@ -157,8 +171,16 @@
     text-transform:uppercase; margin-top:3px;
   }
   .sells{
-    font-size:13px; font-style:italic; color:var(--muted);
-    border-left:2px solid var(--accent); padding-left:8px; line-height:1.5;
+    font-size:14px; font-style:italic; color:var(--white);
+    border-left:2px solid var(--accent); padding-left:8px; line-height:1.45;
+  }
+  .result{
+    margin-top:auto; padding-top:12px; border-top:1px solid var(--line);
+    font-size:13.5px; line-height:1.5; color:var(--white);
+  }
+  .result b{
+    display:block; font-family:var(--f); font-weight:800; font-size:10.5px;
+    letter-spacing:0.1em; text-transform:uppercase; color:var(--accent-txt); margin-bottom:4px;
   }
 
   footer{
@@ -171,16 +193,15 @@
   footer strong{color:var(--gold); font-weight:600;}
 
   @media (max-width: 900px){
-    .grid{grid-template-columns:1fr; }
+    .grid{grid-template-columns:1fr;}
     .ladder{display:none;}
     .card{min-height:auto;}
-    .identity{min-height:auto;}
   }
 
   /* ---------- section 2: reglas de discurso ---------- */
   .rules-section{margin-top:80px;}
   .rules-grid{
-    display:grid; grid-template-columns:1fr 2.1fr;
+    display:grid; grid-template-columns:1fr;
     gap:0; border-radius:12px; overflow:hidden;
     border:1px solid var(--line);
   }
@@ -218,54 +239,7 @@
     color:var(--black); letter-spacing:-0.02em;
   }
   .rules-right h2 .accent{color:#B8901F;}
-  .rules-right .lede{font-size:14px; color:#707070; margin-top:6px; line-height:1.55;}
-
-  .timeline{display:flex; align-items:center; justify-content:center; gap:6px; margin:26px 0 20px;}
-  .tl-badge{
-    width:60px; height:60px; border-radius:50%; background:var(--black);
-    border:2px solid var(--gold); display:flex; align-items:center; justify-content:center;
-    flex:0 0 auto;
-  }
-  .tl-arrow{color:#888888; font-size:16px;}
-
-  .tl-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px;}
-  .tl-col{display:flex; flex-direction:column;}
-  .tl-head{
-    font-family:var(--f); font-weight:800; font-size:12px; text-align:center;
-    padding:8px 4px; color:#fff; letter-spacing:0.02em;
-  }
-  .tl-col:nth-child(1) .tl-head{background:var(--black);}
-  .tl-col:nth-child(2) .tl-head{background:var(--c2);}
-  .tl-col:nth-child(3) .tl-head{background:var(--c3);}
-  .tl-col:nth-child(4) .tl-head{background:var(--c4);}
-  .tl-col:nth-child(5) .tl-head{background:var(--c5);}
-  /* contraste del manual: sobre verde/oro → texto negro */
-  .tl-col:nth-child(4) .tl-head,
-  .tl-col:nth-child(5) .tl-head{color:var(--black);}
-  .tl-name{
-    font-family:var(--f); font-weight:800; font-size:16px; text-align:center;
-    padding:12px 6px 6px; line-height:1.1; color:var(--black); letter-spacing:-0.015em;
-  }
-  .tl-obj-k{font-size:11px; text-align:center; letter-spacing:0.1em; color:#707070; margin-top:8px;}
-  .tl-obj{font-size:14px; text-align:center; padding:3px 8px 10px; line-height:1.45; color:var(--black);}
-  .tl-prod-k{font-size:11px; text-align:center; letter-spacing:0.1em; color:#707070;}
-  .tl-prod{font-size:13.5px; text-align:center; padding:4px 8px 4px; line-height:1.5; color:var(--black); flex:1;}
-  .tl-price{
-    font-family:var(--f); font-weight:800; font-size:18px; text-align:center;
-    padding:4px 4px 10px; color:var(--black); letter-spacing:-0.02em;
-  }
-  .tl-sell{
-    text-align:center; font-family:var(--f); font-weight:800; font-size:12px;
-    text-transform:uppercase; color:#fff; padding:9px 4px; line-height:1.3;
-  }
-  .tl-col:nth-child(1) .tl-sell{background:var(--black);}
-  .tl-col:nth-child(2) .tl-sell{background:var(--c2);}
-  .tl-col:nth-child(3) .tl-sell{background:var(--c3);}
-  .tl-col:nth-child(4) .tl-sell{background:var(--c4);}
-  .tl-col:nth-child(5) .tl-sell{background:var(--c5);}
-  /* contraste del manual: sobre verde/oro → texto negro */
-  .tl-col:nth-child(4) .tl-sell,
-  .tl-col:nth-child(5) .tl-sell{color:var(--black);}
+  .rules-right .lede{font-size:14px; color:#707070; margin-top:6px; line-height:1.55; max-width:640px;}
 
   .principle-box{
     margin-top:22px; border:1px solid #E8E8E8; border-radius:8px;
@@ -276,15 +250,9 @@
   }
   .principle-box .pv{
     font-family:var(--f); font-weight:800; font-size:17px; color:var(--black);
-    line-height:1.25; letter-spacing:-0.015em; margin-top:4px;
+    line-height:1.35; letter-spacing:-0.015em; margin-top:4px;
   }
   .principle-box .pv em{color:var(--c2); font-style:normal;}
-
-  @media (max-width: 900px){
-    .rules-grid{grid-template-columns:1fr;}
-    .tl-grid{grid-template-columns:1fr;}
-    .timeline{display:none;}
-  }
 
   /* ---------- section 3: manifiesto de posicionamiento ---------- */
   .position-section{
@@ -336,15 +304,15 @@
   .position-col.right{display:flex; flex-direction:column; gap:22px;}
   .pr-block{display:flex; gap:10px; align-items:flex-start;}
   .pr-block svg{flex:0 0 auto; color:var(--gold); margin-top:2px;}
-  .pr-block h4{font-size:14px; text-transform:uppercase; letter-spacing:0.02em; margin-bottom:4px;}
+  .pr-block h3{font-size:14px; text-transform:uppercase; letter-spacing:0.02em; margin-bottom:4px;}
   .pr-block p{font-size:13.5px; color:var(--muted); line-height:1.55;}
   .pr-block p strong{color:var(--white);}
 
   .position-boxquote{
     max-width:640px; margin:44px auto 0; text-align:center;
-    border:1px solid var(--gold); border-radius:8px; padding:16px 20px;
-    font-family:var(--f); font-weight:800; font-size:17px; line-height:1.35;
-    text-transform:uppercase; letter-spacing:-0.01em;
+    border:1px solid var(--gold); border-radius:8px; padding:18px 22px;
+    font-family:var(--f); font-weight:800; font-size:19px; line-height:1.4;
+    letter-spacing:-0.015em;
   }
   .position-boxquote .accent{color:var(--gold);}
 
@@ -368,7 +336,7 @@
   .sign-taglines{font-size:14px; line-height:1.55; color:var(--white); text-align:center;}
   .sign-taglines .accent{color:var(--gold); font-weight:700;}
   .sign-slogan{
-    font-family:var(--f); font-weight:600; font-style:italic; font-size:22px; color:var(--gold); text-align:right; line-height:1.2;
+    font-family:var(--f); font-weight:600; font-style:italic; font-size:22px; color:var(--gold); text-align:right; line-height:1.3;
   }
 
   @media (max-width: 860px){
@@ -384,8 +352,24 @@
     border-top:1px solid var(--line);
   }
   .closing-logo svg{width:150px; height:auto;}
-  .top-logo{display:flex; justify-content:center; margin-bottom:28px;}
+  .top-logo{display:flex; justify-content:center; margin-bottom:14px;}
   .top-logo svg{width:130px; height:auto;}
+
+  /* ---------- brand lockup (Kike Ramírez Academy) ---------- */
+  .brand-lockup{text-align:center; margin-bottom:44px;}
+  .brand-name{
+    font-family:var(--f); font-weight:800; font-size:clamp(20px,3vw,26px);
+    letter-spacing:0.14em; text-transform:uppercase; color:var(--white);
+  }
+  .brand-name span{color:var(--gold);}
+  .brand-tagline{
+    font-family:var(--f); font-weight:600; font-size:clamp(14px,2vw,16px);
+    color:var(--white); margin-top:10px; letter-spacing:-0.005em;
+  }
+  .brand-note{
+    font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--muted); margin-top:8px; font-weight:600;
+  }
 
   /* ---------- section 4: filosofía ---------- */
   .philosophy-section{margin-top:80px;}
@@ -406,22 +390,6 @@
     max-width:270px; font-size:14px; line-height:1.6; color:var(--white);
     padding-left:16px; border-left:2px solid var(--gold);
   }
-
-  .phil-etapas{display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:48px;}
-  .pe-card{
-    background:var(--bg-card); border:1px solid var(--line); border-top:3px solid var(--accent);
-    border-radius:8px; padding:16px 14px; display:flex; flex-direction:column; gap:8px; min-height:100%;
-  }
-  .pe-card:nth-child(1){--accent:var(--c1);}
-  .pe-card:nth-child(2){--accent:var(--c2);}
-  .pe-card:nth-child(3){--accent:var(--c3);}
-  .pe-card:nth-child(4){--accent:var(--c4);}
-  .pe-card:nth-child(5){--accent:var(--c5);}
-  .pe-num{font-family:var(--f); font-weight:800; font-size:11px; color:var(--accent); letter-spacing:0.05em;}
-  .pe-name{font-family:var(--f); font-weight:800; font-size:16px; text-transform:uppercase; line-height:1.1; letter-spacing:-0.015em;}
-  .pe-desc{font-size:14px; color:var(--muted); line-height:1.5;}
-  .pe-foco-k{font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-top:auto;}
-  .pe-foco{font-size:13.5px; font-weight:700;}
 
   .phil-block{margin-bottom:48px;}
   .phil-block h3{
@@ -454,20 +422,19 @@
     width:52px; height:52px; border:2px solid var(--gold); border-radius:8px;
     display:flex; align-items:center; justify-content:center; flex:0 0 auto; color:var(--gold);
   }
-  .phil-filter-q{font-family:var(--f); font-weight:800; font-size:16px; text-transform:uppercase; flex:1; min-width:220px; line-height:1.3; letter-spacing:-0.01em;}
+  .phil-filter-q{font-family:var(--f); font-weight:800; font-size:17px; flex:1; min-width:220px; line-height:1.35; letter-spacing:-0.015em;}
   .phil-filter-answers{display:flex; flex-direction:column; gap:8px; font-size:13px; line-height:1.5;}
   .phil-filter-answers .yes{color:var(--c4);}
-  .phil-filter-answers .no{color:var(--c2);}
+  .phil-filter-answers .no{color:#ff6b6b;}
   .phil-filter-answers b{display:block; letter-spacing:0.04em;}
 
   .phil-mission{
-    text-align:center; font-family:var(--f); font-weight:800; font-size:15px; text-transform:uppercase;
-    line-height:1.6; border-top:1px solid var(--line); padding-top:24px; letter-spacing:-0.01em;
+    text-align:center; font-family:var(--f); font-weight:800; font-size:17px;
+    line-height:1.5; border-top:1px solid var(--line); padding-top:24px; letter-spacing:-0.015em;
   }
   .phil-mission .accent{color:var(--gold);}
 
   @media (max-width: 900px){
-    .phil-etapas{grid-template-columns:1fr;}
     .phil-grid-6{grid-template-columns:repeat(2,1fr);}
     .phil-grid-5{grid-template-columns:repeat(2,1fr);}
     .phil-grid-4{grid-template-columns:repeat(2,1fr);}
@@ -571,6 +538,12 @@
     </svg>
   </div>
 
+  <div class="brand-lockup">
+    <div class="brand-name">Kike Ramírez <span>Academy</span></div>
+    <div class="brand-tagline">No formamos emprendedores. Formamos empresarios.</div>
+    <div class="brand-note">La carrera completa de un empresario</div>
+  </div>
+
 
   <!-- ============ SECTION 3: MANIFIESTO DE POSICIONAMIENTO ============ -->
   <div class="position-section">
@@ -607,15 +580,15 @@
       <div class="position-col right">
         <div class="pr-block">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
-          <div><h4 class="accent">Mi mercado</h4><p><strong>Empresarios en transición.</strong> Los que saben que pueden más, pero necesitan dar el siguiente salto.</p></div>
+          <div><h3 class="accent">Mi mercado</h3><p><strong>Empresarios en transición.</strong> Los que saben que pueden más, pero necesitan dar el siguiente salto.</p></div>
         </div>
         <div class="pr-block">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3v18M5 4h11l-2 3 2 3H5"/></svg>
-          <div><h4 class="accent">Mi enemigo</h4><p>El empresario que sigue dirigiendo un negocio de hoy con la misma forma de pensar de ayer.</p></div>
+          <div><h3 class="accent">Mi enemigo</h3><p>El empresario que sigue dirigiendo un negocio de hoy con la misma forma de pensar de ayer.</p></div>
         </div>
         <div class="pr-block">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 12L2 9z"/></svg>
-          <div><h4 class="accent">Mi promesa</h4><p>Cada decisión correcta hoy te acerca a la empresa que quieres mañana.</p></div>
+          <div><h3 class="accent">Mi promesa</h3><p>Cada decisión correcta hoy te acerca a la empresa que quieres mañana.</p></div>
         </div>
       </div>
 
@@ -643,7 +616,7 @@
 
   <div class="ladder">
     <div class="step"><div class="dot"></div><div class="price">Gratis</div><div class="name">Sobreviviendo</div></div>
-    <div class="step"><div class="dot"></div><div class="price">$500</div><div class="name">Crecer</div></div>
+    <div class="step"><div class="dot"></div><div class="price">$497</div><div class="name">Crecer</div></div>
     <div class="step"><div class="dot"></div><div class="price">$3.000</div><div class="name">Escalar</div></div>
     <div class="step"><div class="dot"></div><div class="price">$5.000</div><div class="name">Impacto</div></div>
     <div class="step"><div class="dot"></div><div class="price">$10.000</div><div class="name">Patrimonio</div></div>
@@ -652,58 +625,58 @@
   <div class="grid">
 
     <div class="card">
-      <div class="num">ETAPA 01</div>
+      <div class="card-top"><div class="num">ETAPA 01</div><div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div></div>
       <div class="stage">Sobreviviendo</div>
-      <div class="identity">El negocio depende 100% de él. Vive apagando incendios, en modo reacción constante.</div>
+      <div class="field"><div class="label">Objetivo</div><div class="offer">Salir del caos.</div></div>
+      <div class="c-quote">&ldquo;Estoy apagando incendios todos los días.&rdquo;</div>
       <div class="divider"></div>
-      <div class="label">Oferta</div>
-      <div class="offer">Contenido gratuito, newsletter, podcast, diagnóstico.</div>
+      <div class="field"><div class="label">Productos</div><div class="offer">Contenido gratuito · Newsletter · Podcast · Diagnóstico Empresarial</div></div>
       <div class="price-tag">Gratis<small>Puerta de entrada</small></div>
-      <div class="sells">Vendemos esperanza con evidencia.</div>
+      <div class="field"><div class="label">Lo que vendemos</div><div class="sells">Esperanza con evidencia.</div></div>
     </div>
 
     <div class="card">
-      <div class="num">ETAPA 02</div>
+      <div class="card-top"><div class="num">ETAPA 02</div><div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div></div>
       <div class="stage">Crecer</div>
-      <div class="identity">El negocio funciona, pero depende demasiado de él. Necesita estructura, claridad y sistemas.</div>
+      <div class="field"><div class="label">Objetivo</div><div class="offer">Dejar de improvisar y construir un negocio rentable.</div></div>
       <div class="divider"></div>
-      <div class="label">Oferta</div>
-      <div class="offer">Programa de fundamentos + implementación. <em>(en reingeniería)</em></div>
-      <div class="price-tag">$500<small>Programa</small></div>
-      <div class="sells">Vendemos una nueva forma de pensar.</div>
+      <div class="field"><div class="label">Producto</div><div class="offer">Certificación en ADN Empresarial</div></div>
+      <div class="price-tag">497<small>USD · Certificación</small></div>
+      <div class="field"><div class="label">Lo que vendemos</div><div class="sells">Una nueva forma de pensar.</div></div>
+      <div class="result"><b>Resultado</b>El empresario deja de reaccionar y empieza a dirigir.</div>
     </div>
 
     <div class="card">
-      <div class="num">ETAPA 03</div>
+      <div class="card-top"><div class="num">ETAPA 03</div><div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></div></div>
       <div class="stage">Escalar</div>
-      <div class="identity">La empresa deja de depender de él. Construye equipo directivo, sistematiza, delega.</div>
+      <div class="field"><div class="label">Objetivo</div><div class="offer">Construir una empresa que funcione sin depender del dueño.</div></div>
       <div class="divider"></div>
-      <div class="label">Oferta</div>
-      <div class="offer">Mentoría de negocio 1:1.</div>
-      <div class="price-tag">$3.000<small>Mentoría</small></div>
-      <div class="sells">Vendemos aceleración y dirección.</div>
+      <div class="field"><div class="label">Producto</div><div class="offer">Mentoría de Negocios</div></div>
+      <div class="price-tag">3.000<small>USD · Mentoría 1:1</small></div>
+      <div class="field"><div class="label">Lo que vendemos</div><div class="sells">Aceleración y dirección.</div></div>
+      <div class="result"><b>Resultado</b>El empresario deja de ser el cuello de botella.</div>
     </div>
 
     <div class="card">
-      <div class="num">ETAPA 04</div>
+      <div class="card-top"><div class="num">ETAPA 04</div><div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49M7.76 16.24a6 6 0 0 1 0-8.49M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/></svg></div></div>
       <div class="stage">Impacto</div>
-      <div class="identity">Equipo sólido y procesos. Expande su marca, alianzas y posicionamiento.</div>
+      <div class="field"><div class="label">Objetivo</div><div class="offer">Expandir influencia, relaciones y oportunidades de negocio.</div></div>
       <div class="divider"></div>
-      <div class="label">Oferta</div>
-      <div class="offer">Mastermind — grupo cerrado, cohorte de pares en el mismo nivel.</div>
-      <div class="price-tag">$5.000<small>Mastermind grupal</small></div>
-      <div class="sells">Vendemos multiplicación y posicionamiento.</div>
+      <div class="field"><div class="label">Producto</div><div class="offer">ADN Business Club</div><div class="c-format">Mastermind privado de empresarios</div></div>
+      <div class="price-tag">5.000<small>USD · Mastermind</small></div>
+      <div class="field"><div class="label">Lo que vendemos</div><div class="sells">Multiplicación y posicionamiento.</div></div>
+      <div class="result"><b>Resultado</b>El crecimiento deja de depender solo del empresario y empieza a depender de su entorno.</div>
     </div>
 
     <div class="card">
-      <div class="num">ETAPA 05</div>
+      <div class="card-top"><div class="num">ETAPA 05</div><div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20"/><path d="M9 3 6 9l6 12"/><path d="M15 3l3 6-6 12"/></svg></div></div>
       <div class="stage">Patrimonio</div>
-      <div class="identity">Multiplica riqueza, invierte con inteligencia, construye legado.</div>
+      <div class="field"><div class="label">Objetivo</div><div class="offer">Multiplicar patrimonio, invertir, adquirir activos y construir legado.</div></div>
       <div class="divider"></div>
-      <div class="label">Oferta</div>
-      <div class="offer">Círculo privado por invitación — advisory 1:1, deal flow, experiencias exclusivas.</div>
-      <div class="price-tag">$10.000<small>Círculo privado</small></div>
-      <div class="sells">Vendemos multiplicación y legado.</div>
+      <div class="field"><div class="label">Producto</div><div class="offer">ADN Capital</div><div class="c-format">Consejo privado de empresarios</div></div>
+      <div class="price-tag">10.000<small>USD · Consejo privado</small></div>
+      <div class="field"><div class="label">Lo que vendemos</div><div class="sells">Multiplicación y patrimonio.</div></div>
+      <div class="result"><b>Resultado</b>El empresario deja de construir un negocio y empieza a construir riqueza.</div>
     </div>
 
   </div>
@@ -739,72 +712,7 @@
       <!-- right: hablemos por etapas -->
       <div class="rules-right">
         <h2>HABLEMOS POR <span class="accent">ETAPAS</span>, NO POR TEMAS</h2>
-        <p class="lede">Acompañamos la evolución del empresario en cada nivel.</p>
-
-        <div class="timeline">
-          <div class="tl-badge"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2"/><path d="M9 21l2-6-3-3 1-5 4 1 2 3h3"/><path d="M13 12l3 2 3-1"/></svg></div>
-          <div class="tl-arrow">›</div>
-          <div class="tl-badge"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
-          <div class="tl-arrow">›</div>
-          <div class="tl-badge"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
-          <div class="tl-arrow">›</div>
-          <div class="tl-badge"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/></svg></div>
-          <div class="tl-arrow">›</div>
-          <div class="tl-badge"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3l3 6-3 12M15 3l-3 6 3 12"/></svg></div>
-        </div>
-
-        <div class="tl-grid">
-          <div class="tl-col">
-            <div class="tl-head">ETAPA 1</div>
-            <div class="tl-name">SOBREVIVIENDO</div>
-            <div class="tl-obj-k">OBJETIVO</div>
-            <div class="tl-obj">Salir del caos.</div>
-            <div class="tl-prod-k">PRODUCTOS</div>
-            <div class="tl-prod">Contenido gratuito<br>Newsletter<br>Podcast<br>Diagnóstico</div>
-            <div class="tl-price">GRATIS</div>
-            <div class="tl-sell">VENDEMOS<br>ESPERANZA CON EVIDENCIA</div>
-          </div>
-          <div class="tl-col">
-            <div class="tl-head">ETAPA 2</div>
-            <div class="tl-name">CRECER</div>
-            <div class="tl-obj-k">OBJETIVO</div>
-            <div class="tl-obj">Dejar de improvisar y construir un negocio rentable.</div>
-            <div class="tl-prod-k">PRODUCTO</div>
-            <div class="tl-prod">Programa de fundamentos + implementación. (En reingeniería)</div>
-            <div class="tl-price">$500</div>
-            <div class="tl-sell">VENDEMOS<br>UNA NUEVA FORMA DE PENSAR</div>
-          </div>
-          <div class="tl-col">
-            <div class="tl-head">ETAPA 3</div>
-            <div class="tl-name">ESCALAR</div>
-            <div class="tl-obj-k">OBJETIVO</div>
-            <div class="tl-obj">Construir equipo, delegar, procesos, dejar de ser el cuello de botella.</div>
-            <div class="tl-prod-k">PRODUCTO</div>
-            <div class="tl-prod">Mentoría de negocio 1:1.</div>
-            <div class="tl-price">$3.000</div>
-            <div class="tl-sell">VENDEMOS<br>ACELERACIÓN Y DIRECCIÓN</div>
-          </div>
-          <div class="tl-col">
-            <div class="tl-head">ETAPA 4</div>
-            <div class="tl-name">IMPACTO</div>
-            <div class="tl-obj-k">OBJETIVO</div>
-            <div class="tl-obj">Expandir marca, alianzas y posicionamiento.</div>
-            <div class="tl-prod-k">PRODUCTO</div>
-            <div class="tl-prod">Mastermind — grupo cerrado de pares.</div>
-            <div class="tl-price">$5.000</div>
-            <div class="tl-sell">VENDEMOS<br>MULTIPLICACIÓN Y POSICIONAMIENTO</div>
-          </div>
-          <div class="tl-col">
-            <div class="tl-head">ETAPA 5</div>
-            <div class="tl-name">PATRIMONIO</div>
-            <div class="tl-obj-k">OBJETIVO</div>
-            <div class="tl-obj">Multiplicar riqueza, invertir, crear legado.</div>
-            <div class="tl-prod-k">PRODUCTO</div>
-            <div class="tl-prod">Círculo privado por invitación: advisory, deal flow, experiencias.</div>
-            <div class="tl-price">$10.000</div>
-            <div class="tl-sell">VENDEMOS<br>MULTIPLICACIÓN Y LEGADO</div>
-          </div>
-        </div>
+        <p class="lede">Acompañamos la evolución del empresario en cada nivel. Cada producto es el puente entre una etapa y la siguiente — el detalle de cada etapa vive en el mapa de arriba.</p>
 
         <div class="principle-box">
           <div>
@@ -835,45 +743,6 @@
       </div>
       <div class="phil-quote">
         No enseñamos negocios. Formamos empresarios capaces de construir cualquier negocio.
-      </div>
-    </div>
-
-    <!-- 5 etapas resumen -->
-    <div class="phil-etapas">
-      <div class="pe-card">
-        <div class="pe-num">ETAPA 1</div>
-        <div class="pe-name">Sobreviviendo</div>
-        <div class="pe-desc">Tu negocio depende 100% de ti. Vives en modo reacción.</div>
-        <div class="pe-foco-k">Foco principal</div>
-        <div class="pe-foco">Estabilidad y control</div>
-      </div>
-      <div class="pe-card">
-        <div class="pe-num">ETAPA 2</div>
-        <div class="pe-name">Crecer</div>
-        <div class="pe-desc">Ya tienes tracción, pero necesitas estructura, claridad y estrategia.</div>
-        <div class="pe-foco-k">Foco principal</div>
-        <div class="pe-foco">Rentabilidad y sistemas</div>
-      </div>
-      <div class="pe-card">
-        <div class="pe-num">ETAPA 3</div>
-        <div class="pe-name">Escalar</div>
-        <div class="pe-desc">Tu negocio es rentable. Ahora necesitas delegar y construir equipo.</div>
-        <div class="pe-foco-k">Foco principal</div>
-        <div class="pe-foco">Expansión y liderazgo</div>
-      </div>
-      <div class="pe-card">
-        <div class="pe-num">ETAPA 4</div>
-        <div class="pe-name">Impacto</div>
-        <div class="pe-desc">Tienes equipo sólido y procesos. Quieres expandir tu marca y alianzas.</div>
-        <div class="pe-foco-k">Foco principal</div>
-        <div class="pe-foco">Multiplicación y posicionamiento</div>
-      </div>
-      <div class="pe-card">
-        <div class="pe-num">ETAPA 5</div>
-        <div class="pe-name">Patrimonio</div>
-        <div class="pe-desc">Buscas multiplicar tu patrimonio, invertir y dejar un legado duradero.</div>
-        <div class="pe-foco-k">Foco principal</div>
-        <div class="pe-foco">Patrimonio y legado</div>
       </div>
     </div>
 
