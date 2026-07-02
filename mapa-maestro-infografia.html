@@ -31,14 +31,15 @@
     --f:'Inter Tight',sans-serif;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html,body{max-width:100%; overflow-x:hidden;}
+  html{max-width:100%; overflow-x:hidden; scroll-behavior:smooth; scroll-padding-top:80px;}
   body{
     background:var(--bg);
     color:var(--white);
     font-family:var(--f);
     font-weight:400;
     line-height:1.6;
-    padding:48px 24px 64px;
+    padding:80px 24px 64px;
+    overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
     -webkit-text-size-adjust:100%;
   }
@@ -265,41 +266,43 @@
 
   /* ---------- section 3: manifiesto de posicionamiento ---------- */
   .position-section{
-    margin-top:80px; border-radius:14px; overflow:hidden;
+    margin-top:36px; border-radius:14px; overflow:hidden;
     background:radial-gradient(ellipse at 50% 30%, #171717 0%, #0A0A0A 70%);
     border:1px solid var(--line);
     padding:52px 32px 40px;
   }
   .position-head{
     font-family:var(--f); font-weight:800; text-align:center;
-    font-size:clamp(26px,4.6vw,44px); line-height:1.05;
-    text-transform:uppercase; letter-spacing:-0.035em;
+    font-size:clamp(28px,5vw,46px); line-height:1.06;
+    text-transform:uppercase; letter-spacing:-0.03em;
+    text-wrap:balance;
   }
   .position-head .accent{color:var(--gold);}
   .position-quote{
-    max-width:620px; margin:26px auto 0; text-align:center;
-    font-size:16px; line-height:1.6; color:var(--white); position:relative;
+    max-width:780px; margin:30px auto 0; text-align:center;
+    font-size:clamp(18px,2.6vw,24px); font-weight:500;
+    line-height:1.5; color:var(--white); position:relative;
+    text-wrap:balance;
   }
   .position-quote em{color:var(--gold); font-style:normal;}
-  .qmark{color:var(--gold); font-size:34px; font-family:var(--f); font-weight:800; line-height:0; position:relative; top:8px;}
+  .qmark{color:var(--gold); font-size:38px; font-family:var(--f); font-weight:800; line-height:0; position:relative; top:10px;}
 
   .position-body{
     display:grid; grid-template-columns:1fr 1.3fr 1fr;
     gap:28px; align-items:start; margin-top:44px;
   }
-  .position-lede{font-size:15px; line-height:1.6; margin-bottom:18px;}
+  .position-lede{font-size:16px; line-height:1.6; margin-bottom:18px;}
   .position-lede .accent{color:var(--gold);}
-  .position-list{display:flex; flex-direction:column; gap:14px;}
-  .pl-item{display:flex; gap:10px; align-items:flex-start; font-size:14px; line-height:1.5;}
-  .pl-item svg{flex:0 0 auto; margin-top:2px; color:var(--gold);}
+  .position-list{display:flex; flex-direction:column; gap:16px;}
+  .pl-item{display:flex; gap:14px; align-items:center; font-size:15px; line-height:1.5;}
 
-  .position-stairs{display:flex; align-items:center; justify-content:center;}
+  .position-stairs{display:flex; flex-direction:column; align-items:center; justify-content:center;}
   .stairs-labels{
-    display:flex; flex-direction:column; gap:8px; width:100%; max-width:210px; margin:0 auto;
+    display:flex; flex-direction:column; gap:10px; width:100%; max-width:230px; margin:0 auto;
   }
   .stair-step{
     background:#171717; border:1px solid var(--line); border-radius:4px;
-    padding:9px 10px; font-family:var(--f); font-weight:700; font-size:12.5px;
+    padding:12px 14px; font-family:var(--f); font-weight:700; font-size:14px;
     text-align:center; text-transform:uppercase; letter-spacing:0.02em;
     width:calc(100% - var(--indent,0px)); margin-left:auto;
   }
@@ -311,10 +314,9 @@
   .stair-step:nth-child(5){--indent:0px;}
 
   .position-col.right{display:flex; flex-direction:column; gap:22px;}
-  .pr-block{display:flex; gap:10px; align-items:flex-start;}
-  .pr-block svg{flex:0 0 auto; color:var(--gold); margin-top:2px;}
-  .pr-block h3{font-size:14px; text-transform:uppercase; letter-spacing:0.02em; margin-bottom:4px;}
-  .pr-block p{font-size:13.5px; color:var(--muted); line-height:1.55;}
+  .pr-block{display:flex; gap:14px; align-items:flex-start;}
+  .pr-block h3{font-size:15px; text-transform:uppercase; letter-spacing:0.02em; margin-bottom:4px;}
+  .pr-block p{font-size:15px; color:var(--muted); line-height:1.55;}
   .pr-block p strong{color:var(--white);}
 
   .position-boxquote{
@@ -362,22 +364,24 @@
   }
   .closing-logo svg{width:150px; height:auto;}
   .top-logo{display:flex; justify-content:center; margin-bottom:14px;}
-  .top-logo svg{width:130px; height:auto;}
+  .top-logo svg{width:clamp(150px,18vw,200px); height:auto;}
 
-  /* ---------- brand lockup (Kike Ramírez Academy) ---------- */
-  .brand-lockup{text-align:center; margin-bottom:44px;}
+  /* ---------- hero + brand lockup (Kike Ramírez Academy) ---------- */
+  .hero{text-align:center; padding:48px 0 40px;}
+  .brand-lockup{text-align:center; margin-bottom:20px;}
   .brand-name{
-    font-family:var(--f); font-weight:800; font-size:clamp(20px,3vw,26px);
-    letter-spacing:0.14em; text-transform:uppercase; color:var(--white);
+    font-family:var(--f); font-weight:700; font-size:clamp(13px,1.8vw,16px);
+    letter-spacing:0.16em; text-transform:uppercase; color:var(--white);
+    margin-top:20px;
   }
-  .brand-name span{color:var(--gold);}
+  .brand-name span{color:var(--white);}
   .brand-tagline{
-    font-family:var(--f); font-weight:600; font-size:clamp(14px,2vw,16px);
-    color:var(--white); margin-top:10px; letter-spacing:-0.005em;
+    font-family:var(--f); font-weight:500; font-size:clamp(13px,1.6vw,15px);
+    color:var(--muted); margin-top:8px;
   }
   .brand-note{
-    font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
-    color:var(--muted); margin-top:8px; font-weight:600;
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--muted); margin-top:6px; font-weight:600;
   }
 
   /* ---------- section 4: filosofía ---------- */
@@ -506,7 +510,7 @@
   /* ========= RESPONSIVE: teléfonos pequeños (≤400px) ======= */
   /* ========================================================= */
   @media (max-width: 400px){
-    body{padding:24px 12px 36px;}
+    body{padding:80px 12px 36px;}
 
     .position-section{padding:26px 14px 28px;}
     .rules-left,
@@ -519,12 +523,185 @@
     .phil-grid-6,
     .phil-grid-5,
     .phil-grid-4{grid-template-columns:1fr;}
+    .pilares-grid{grid-template-columns:1fr;}
+    .const-grid{grid-template-columns:1fr;}
+  }
+
+  /* ================================================================ */
+  /* ============ REVISIÓN 8 — DISEÑO TIPO WEBSITE ================= */
+  /* ================================================================ */
+
+  /* --- Nav bar fija --- */
+  .site-nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    height:64px;
+    background:rgba(10,10,10,0.92);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1180px; margin:0 auto; height:100%;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 24px; position:relative;
+  }
+  .nav-logo{display:flex; align-items:center; text-decoration:none;}
+  .nav-logo svg{width:100px; height:auto;}
+  .nav-toggle-input{display:none;}
+  .nav-hamburger{display:none;}
+  .nav-links{display:flex; gap:28px; list-style:none;}
+  .nav-links a{
+    font-family:var(--f); font-size:12px; font-weight:600;
+    letter-spacing:0.07em; text-transform:uppercase;
+    color:var(--muted); text-decoration:none;
+    transition:color 0.2s;
+  }
+  .nav-links a:hover{color:var(--white);}
+
+  /* --- Section eyebrow --- */
+  .section-eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:11px; font-weight:700; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:12px;
+  }
+  .section-eyebrow::before{
+    content:""; width:20px; height:1px; background:var(--gold); display:block;
+  }
+  .section-anchor{display:block; height:0;}
+
+  /* Column eyebrow (inside manifiesto body) */
+  .col-eyebrow{
+    font-size:10px; font-weight:700; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:14px;
+  }
+
+  /* --- Icon badge --- */
+  .icon-badge{
+    width:52px; height:52px; border-radius:50%;
+    border:1.5px solid var(--gold); flex:0 0 auto;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--gold); background:rgba(219,173,48,0.05);
+  }
+  .icon-badge svg{width:22px; height:22px;}
+
+  /* --- Conceptos Clave --- */
+  .concept-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+  }
+  .concept-card{
+    background:var(--bg-card); border:1px solid var(--line);
+    border-radius:10px; padding:24px 20px;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .concept-num{
+    width:48px; height:48px; border-radius:50%;
+    border:1.5px solid var(--gold); flex:0 0 auto;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--f); font-weight:800; font-size:18px; color:var(--gold);
+  }
+  .concept-title{
+    font-weight:700; font-size:15px; text-transform:uppercase;
+    letter-spacing:0.02em; line-height:1.3; color:var(--white);
+  }
+  .concept-desc{font-size:14px; color:var(--muted); line-height:1.6;}
+
+  /* --- 12 Pilares --- */
+  .pilares-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+  }
+  .pilar-item{
+    background:var(--bg-card); border:1px solid var(--line);
+    border-radius:8px; padding:20px 18px;
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .pilar-num{
+    font-family:var(--f); font-weight:800; font-size:42px;
+    color:rgba(219,173,48,0.22); line-height:1; letter-spacing:-0.04em;
+  }
+  .pilar-text{font-size:14px; color:var(--white); line-height:1.6;}
+
+  /* --- Constitución del Empresario --- */
+  .const-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:16px;
+  }
+  .const-item{
+    background:var(--bg-card); border:1px solid var(--line);
+    border-radius:8px; padding:18px 20px;
+    display:flex; gap:16px; align-items:flex-start;
+  }
+  .const-num{
+    font-family:var(--f); font-weight:800; font-size:11px;
+    letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--gold); flex:0 0 auto; padding-top:3px; white-space:nowrap;
+  }
+  .const-text{font-size:15px; line-height:1.55; color:var(--white);}
+
+  /* --- Responsive nav en móvil --- */
+  @media (max-width:600px){
+    .nav-hamburger{
+      display:flex; flex-direction:column; gap:5px;
+      padding:10px; cursor:pointer; z-index:10; background:none; border:none;
+    }
+    .nav-hamburger span{
+      display:block; width:22px; height:2px;
+      background:var(--white); border-radius:2px;
+      transition:transform 0.2s;
+    }
+    .nav-links{
+      position:absolute; top:64px; left:0; right:0;
+      background:rgba(10,10,10,0.97);
+      border-bottom:1px solid var(--line);
+      flex-direction:column; gap:0;
+      display:none;
+    }
+    .nav-toggle-input:checked ~ .nav-links{display:flex;}
+    .nav-links li a{
+      display:block; padding:16px 24px;
+      border-bottom:1px solid var(--line); font-size:14px;
+    }
+    /* Grids filosóficos */
+    .concept-grid{grid-template-columns:1fr;}
+    .pilares-grid{grid-template-columns:repeat(2,1fr);}
+    .const-grid{grid-template-columns:1fr;}
+    /* Icon badges más pequeños en móvil */
+    .icon-badge{width:44px; height:44px;}
+    .icon-badge svg{width:20px; height:20px;}
+  }
+  @media (min-width:601px){
+    .nav-hamburger{display:none;}
+    .nav-links{display:flex !important;}
   }
 </style>
 </head>
 <body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg width="100" height="30" viewBox="0 0 140 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_nav)">
+      <path d="M121.773 27.2256C122.172 27.2624 122.57 27.336 122.963 27.336C123.496 27.336 123.833 27.5751 123.84 28.0963C123.846 28.5869 123.594 28.9609 123.036 28.9548C105.346 28.7831 96.8041 29.0038 75.7349 30.4326C71.5223 30.7085 67.3159 31.1132 63.1339 31.6344C56.3275 32.4745 49.5457 33.4801 42.7699 34.5348C36.6258 35.4914 30.5123 36.6258 24.3988 37.7234C18.8004 38.7229 7.43798 41.3412 7.31534 41.3657C5.96019 41.66 4.79513 41.3044 4.789 40.4398C4.789 39.4342 5.7885 39.2686 6.56112 39.0969C10.1973 38.2875 13.8335 37.4597 17.4881 36.7423C21.3696 35.988 25.5822 35.0621 29.4882 34.4857C35.4423 33.6089 41.0101 32.6032 46.9764 31.8C51.9187 31.1316 56.8549 30.3651 61.8094 29.7826C66.5678 29.2184 71.3323 28.6788 76.1151 28.3416C81.4621 27.9614 99.772 26.453 121.767 27.2501Z" fill="white"/>
+      <path d="M8.98321 20.9097C12.5704 18.6103 16.6665 15.9981 20.1923 13.7048C21.2286 13.0303 22.2465 12.3251 23.2153 11.5525C23.6139 11.2336 23.9757 10.878 24.2332 10.3384C24.6195 9.51669 25.5761 9.52895 26.2383 10.0318C26.9129 10.5468 26.8577 11.2397 26.2322 11.9081C24.1964 14.0911 21.5781 15.4462 19.107 17.016C15.3113 19.4197 11.5218 21.8357 7.70778 24.2026C7.16204 24.5398 6.59791 24.8219 6.23 25.3431C6.0767 25.5638 6.23 25.8704 6.49367 25.895C7.62807 26.0053 8.68275 25.527 9.73131 25.3247C11.3685 25.0058 13.018 24.7483 14.6613 24.4601C15.391 24.3313 16.2188 24.3436 16.3476 25.1407C16.4641 25.8643 15.7038 26.269 15.017 26.4162C11.7916 27.1275 8.56625 27.8878 5.31635 28.4765C4.21261 28.6788 3.70366 29.2675 3.42159 30.175C3.18245 30.966 2.9801 31.6896 2.44049 32.2599C2.15229 32.5665 1.45326 32.4561 1.10374 31.9962C0.582529 31.3156 1.22025 30.6472 1.45939 30.0708C1.75985 29.335 1.92541 28.9364 0.962706 28.5685C-0.251408 28.1024 -0.312727 26.6737 0.778749 25.944C1.33675 25.57 1.93768 25.245 2.54473 24.9568C5.69039 23.4667 6.75734 20.3272 8.30258 17.6046C9.22849 15.9797 9.903 14.2137 10.6388 12.4907C10.7553 12.227 11.252 11.5893 10.3016 11.6199C10.1176 11.6261 10.0072 11.4544 10.0011 11.2643C9.97045 10.2096 11.5034 7.91013 13.0487 9.09972C13.7232 9.6148 13.6557 10.2341 13.4595 11.1048C12.7482 14.2934 9.25915 20.4069 8.97708 20.9097" fill="white"/>
+      <path d="M86.1714 14.925C86.153 14.8944 86.2327 14.8024 86.2573 14.7349C86.7969 13.2755 85.9691 11.9817 84.5035 12.2883C81.1187 13.0057 78.0957 14.4099 76.1948 17.5372C76.0231 17.8193 75.8944 18.1565 75.3425 18.1381C72.6015 18.04 69.8974 18.3895 67.1871 18.8249C66.5862 18.923 66.0711 18.9475 65.3291 18.9905C65.1022 19.0027 65.0103 18.7084 65.2004 18.5858C67.4262 17.1815 69.5295 15.8571 71.6204 14.5264C74.7538 12.5336 77.8811 10.5407 80.4871 7.84882C81.6829 6.61017 86.3983 1.72919 77.4887 0.343384C75.275 -1.6039e-06 73.0614 -0.153299 70.8172 0.202351C67.9536 0.649979 65.3966 1.98673 63.4405 3.88762C62.95 4.3659 62.7231 5.01588 63.3179 5.56162C63.8268 6.02764 64.3296 5.71492 64.7834 5.31635C66.3348 3.95507 68.9899 2.02352 73.3864 1.99899C82.4432 1.94994 78.7396 6.71442 77.8075 7.4809C75.2321 9.5964 72.4973 11.485 69.646 13.202C67.9107 14.2444 66.2673 15.4524 64.4523 16.3721C64.1089 16.55 63.7226 16.2188 63.8329 15.8448C63.8759 15.7099 63.9311 15.5811 64.0046 15.4462C65.3107 13.1652 66.623 10.8841 67.9965 8.64596C68.487 7.85495 68.3215 7.13752 67.7022 6.75734C66.8989 6.26066 66.4451 6.95969 66.0649 7.62807C64.1579 10.9822 62.1957 14.3057 60.3439 17.6905C59.7736 18.7329 59.0439 19.4503 57.9893 19.947C57.0388 20.3947 56.72 21.3942 57.3393 22.2036C57.6765 22.6451 57.56 22.9087 57.3883 23.2828C56.9039 24.3497 56.1436 25.2572 55.7572 26.3794C55.5488 26.9987 55.512 27.6119 56.1436 27.8878C57.1982 28.3477 58.1609 26.036 58.5534 24.9997C58.9642 23.9144 59.3751 22.6941 60.8835 22.3875C65.1513 21.5045 69.4191 20.6461 73.7666 20.3395C74.6005 20.2782 75.9128 20.1003 76.4094 20.6277C77.2924 21.7253 78.4698 21.7253 79.6532 21.2899C81.0329 20.781 82.3206 20.0758 83.5531 19.156C83.6083 19.7692 83.3753 20.4069 84.1969 20.5725C84.7672 20.6829 85.2394 20.4253 85.2762 19.9593C85.4049 18.2485 87.3671 16.8688 86.1714 14.9311M84.1479 15.6057C82.8663 16.9301 81.5541 17.8683 80.0825 18.6839C79.5735 18.9659 78.8193 19.1192 78.4146 18.4386C78.1938 18.0645 78.7702 17.5433 79.0891 17.2858C80.4197 16.2066 81.8484 15.2991 83.6819 14.8146C84.1479 14.692 84.4851 15.2623 84.1479 15.6057Z" fill="white"/>
+      </g>
+      <defs><clipPath id="clip0_nav"><rect width="139.126" height="41.4638" fill="white"/></clipPath></defs>
+      </svg>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+    <label for="nav-toggle" class="nav-hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </label>
+    <ul class="nav-links">
+      <li><a href="#manifiesto">Posicionamiento</a></li>
+      <li><a href="#etapas">Las 5 Etapas</a></li>
+      <li><a href="#reglas">Reglas de Discurso</a></li>
+      <li><a href="#filosofia">Filosofía</a></li>
+    </ul>
+  </div>
+</nav>
+
 <div class="wrap">
 
+  <div class="hero">
   <div class="top-logo">
     <svg width="140" height="42" viewBox="0 0 140 42" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g clip-path="url(#clip0_top_284_56)">
@@ -552,12 +729,13 @@
     <div class="brand-tagline">No formamos emprendedores. Formamos empresarios.</div>
     <div class="brand-note">La carrera completa de un empresario</div>
   </div>
+  </div><!-- /.hero -->
 
 
   <!-- ============ SECTION 3: MANIFIESTO DE POSICIONAMIENTO ============ -->
-  <div class="position-section">
+  <section id="manifiesto" class="position-section">
 
-    <h2 class="position-head">NO HAGO CRECER EMPRESAS,<br><span class="accent">HAGO EVOLUCIONAR<br>AL EMPRESARIO</span><br>QUE LAS DIRIGE.</h2>
+    <h2 class="position-head">No hago crecer empresas,<br><span class="accent">hago evolucionar al empresario que las dirige.</span></h2>
 
     <div class="position-quote">
       <span class="qmark">&ldquo;</span>No puedes construir un negocio de <em>diez millones</em> con la forma de pensar que construyó uno de <em>cien mil</em>.<span class="qmark">&rdquo;</span>
@@ -566,17 +744,19 @@
     <div class="position-body">
 
       <div class="position-col left">
+        <p class="col-eyebrow">Mi método</p>
         <p class="position-lede">Mi trabajo no es enseñarte <span class="accent">herramientas</span>. Es transformar tu forma de pensar para que <span class="accent">todo cambie</span>.</p>
         <div class="position-list">
-          <div class="pl-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg><span>Veo lo que otros no ven</span></div>
-          <div class="pl-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2"/></svg><span>Encuentro el verdadero problema</span></div>
-          <div class="pl-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2 4h5l-4 4 1.5 5-4.5-3-4.5 3L9 10 5 6h5z"/></svg><span>Cuestiono supuestos y rompo esquemas</span></div>
-          <div class="pl-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h7l-1 8 11-14h-7z"/></svg><span>Te doy claridad y decisiones que generan impacto</span></div>
-          <div class="pl-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20V10M10 20V4M17 20v-7"/></svg><span>Te acompaño hasta que lo ejecutes</span></div>
+          <div class="pl-item"><div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></div><span>Veo lo que otros no ven</span></div>
+          <div class="pl-item"><div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2"/></svg></div><span>Encuentro el verdadero problema</span></div>
+          <div class="pl-item"><div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2 4h5l-4 4 1.5 5-4.5-3-4.5 3L9 10 5 6h5z"/></svg></div><span>Cuestiono supuestos y rompo esquemas</span></div>
+          <div class="pl-item"><div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 11-14h-7z"/></svg></div><span>Te doy claridad y decisiones que generan impacto</span></div>
+          <div class="pl-item"><div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20V10M10 20V4M17 20v-7"/></svg></div><span>Te acompaño hasta que lo ejecutes</span></div>
         </div>
       </div>
 
       <div class="position-stairs">
+        <p class="col-eyebrow" style="text-align:center; margin-bottom:16px;">La transformación</p>
         <div class="stairs-labels">
           <div class="stair-step">Nuevos resultados</div>
           <div class="stair-step gold">Nueva versión de ti</div>
@@ -587,16 +767,17 @@
       </div>
 
       <div class="position-col right">
+        <p class="col-eyebrow">Mi posición</p>
         <div class="pr-block">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+          <div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
           <div><h3 class="accent">Mi mercado</h3><p><strong>Empresarios en transición.</strong> Los que saben que pueden más, pero necesitan dar el siguiente salto.</p></div>
         </div>
         <div class="pr-block">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3v18M5 4h11l-2 3 2 3H5"/></svg>
+          <div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3v18M5 4h11l-2 3 2 3H5"/></svg></div>
           <div><h3 class="accent">Mi enemigo</h3><p>El empresario que sigue dirigiendo un negocio de hoy con la misma forma de pensar de ayer.</p></div>
         </div>
         <div class="pr-block">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 12L2 9z"/></svg>
+          <div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 12L2 9z"/></svg></div>
           <div><h3 class="accent">Mi promesa</h3><p>Cada decisión correcta hoy te acerca a la empresa que quieres mañana.</p></div>
         </div>
       </div>
@@ -618,8 +799,10 @@
       <div class="sign-slogan">No es suerte,<br>es evolución.</div>
     </div>
 
-  </div>
+  </section><!-- /#manifiesto -->
 
+  <div id="etapas" class="section-anchor"></div>
+  <div class="section-eyebrow">El camino completo</div>
   <h1>LAS 5 ETAPAS <span>DEL EMPRESARIO</span></h1>
   <p class="sub">Un solo camino, cinco versiones de ti mismo. Cada etapa exige una nueva identidad — y una decisión de a dónde quieres llegar.</p>
 
@@ -696,7 +879,7 @@
   </div>
 
   <!-- ============ SECTION 2: REGLAS DE DISCURSO ============ -->
-  <div class="rules-section">
+  <div id="reglas" class="rules-section">
     <div class="rules-grid">
 
       <!-- left: qué no hablar -->
@@ -747,11 +930,11 @@
 
 
   <!-- ============ SECTION 4: NUESTRA FILOSOFÍA ============ -->
-  <div class="philosophy-section">
+  <div id="filosofia" class="philosophy-section">
 
     <div class="phil-topbar">
       <div class="phil-title">
-        <div class="eyebrow">Nuestra filosofía</div>
+        <div class="section-eyebrow">Nuestra filosofía</div>
         <h2>Formamos <span class="accent">empresarios</span>, no solo negocios</h2>
         <p class="phil-sub">Un sistema. Cinco etapas. Una misión: llevar al empresario a su próxima versión.</p>
       </div>
@@ -763,13 +946,13 @@
     <!-- conceptos clave -->
     <div class="phil-block">
       <h3>Conceptos clave que guían nuestra conversación</h3>
-      <div class="phil-grid-6">
-        <div class="phil-item"><div class="badge">1</div><h4>Las cinco etapas</h4><p>Todo empresario está en una etapa. El primer paso es reconocerla.</p></div>
-        <div class="phil-item"><div class="badge">2</div><h4>El cuello de botella</h4><p>No es el problema. Es el punto que limita todo.</p></div>
-        <div class="phil-item"><div class="badge">3</div><h4>La próxima versión</h4><p>No se trata solo de crecer, se trata de convertirte en tu siguiente versión.</p></div>
-        <div class="phil-item"><div class="badge">4</div><h4>La decisión clave</h4><p>Toda etapa tiene una decisión que cambia el juego.</p></div>
-        <div class="phil-item"><div class="badge">5</div><h4>El precio del siguiente nivel</h4><p>Cada etapa exige renunciar a algo para ganar más.</p></div>
-        <div class="phil-item"><div class="badge">6</div><h4>El empresario correcto</h4><p>No basta con tener una buena empresa. Debes convertirte en el empresario que esa empresa necesita.</p></div>
+      <div class="concept-grid">
+        <div class="concept-card"><div class="concept-num">1</div><h4 class="concept-title">Las cinco etapas</h4><p class="concept-desc">Todo empresario está en una etapa. El primer paso es reconocerla.</p></div>
+        <div class="concept-card"><div class="concept-num">2</div><h4 class="concept-title">El cuello de botella</h4><p class="concept-desc">No es el problema. Es el punto que limita todo.</p></div>
+        <div class="concept-card"><div class="concept-num">3</div><h4 class="concept-title">La próxima versión</h4><p class="concept-desc">No se trata solo de crecer, se trata de convertirte en tu siguiente versión.</p></div>
+        <div class="concept-card"><div class="concept-num">4</div><h4 class="concept-title">La decisión clave</h4><p class="concept-desc">Toda etapa tiene una decisión que cambia el juego.</p></div>
+        <div class="concept-card"><div class="concept-num">5</div><h4 class="concept-title">El precio del siguiente nivel</h4><p class="concept-desc">Cada etapa exige renunciar a algo para ganar más.</p></div>
+        <div class="concept-card"><div class="concept-num">6</div><h4 class="concept-title">El empresario correcto</h4><p class="concept-desc">No basta con tener una buena empresa. Debes convertirte en el empresario que esa empresa necesita.</p></div>
       </div>
     </div>
 
@@ -788,36 +971,36 @@
     <!-- 12 pilares -->
     <div class="phil-block">
       <h3>Los 12 pilares de nuestra filosofía</h3>
-      <div class="phil-grid-4">
-        <div class="phil-art"><div class="art-num">01</div><p>Tu empresa nunca crecerá por encima del empresario que la dirige.</p></div>
-        <div class="phil-art"><div class="art-num">02</div><p>Cada nivel de crecimiento exige una nueva versión del empresario.</p></div>
-        <div class="phil-art"><div class="art-num">03</div><p>No tienes un problema de información. Tienes un problema de decisiones.</p></div>
-        <div class="phil-art"><div class="art-num">04</div><p>Cada etapa exige habilidades diferentes.</p></div>
-        <div class="phil-art"><div class="art-num">05</div><p>El cuello de botella nunca está donde la mayoría cree.</p></div>
-        <div class="phil-art"><div class="art-num">06</div><p>Tu negocio es el reflejo de tus decisiones. No del algoritmo, no del gobierno, no de la competencia.</p></div>
-        <div class="phil-art"><div class="art-num">07</div><p>La rentabilidad siempre vence al ego.</p></div>
-        <div class="phil-art"><div class="art-num">08</div><p>Antes de hacer más, aprende a hacer mejor.</p></div>
-        <div class="phil-art"><div class="art-num">09</div><p>Todo crecimiento tiene un precio. Si quieres pasar de etapa, debes convertirte en otro empresario.</p></div>
-        <div class="phil-art"><div class="art-num">10</div><p>La velocidad importa.</p></div>
-        <div class="phil-art"><div class="art-num">11</div><p>Una mala decisión cuesta más que una buena mentoría.</p></div>
-        <div class="phil-art"><div class="art-num">12</div><p>El empresario que deja de evolucionar empieza a desaparecer.</p></div>
+      <div class="pilares-grid">
+        <div class="pilar-item"><div class="pilar-num">01</div><p class="pilar-text">Tu empresa nunca crecerá por encima del empresario que la dirige.</p></div>
+        <div class="pilar-item"><div class="pilar-num">02</div><p class="pilar-text">Cada nivel de crecimiento exige una nueva versión del empresario.</p></div>
+        <div class="pilar-item"><div class="pilar-num">03</div><p class="pilar-text">No tienes un problema de información. Tienes un problema de decisiones.</p></div>
+        <div class="pilar-item"><div class="pilar-num">04</div><p class="pilar-text">Cada etapa exige habilidades diferentes.</p></div>
+        <div class="pilar-item"><div class="pilar-num">05</div><p class="pilar-text">El cuello de botella nunca está donde la mayoría cree.</p></div>
+        <div class="pilar-item"><div class="pilar-num">06</div><p class="pilar-text">Tu negocio es el reflejo de tus decisiones. No del algoritmo, no del gobierno, no de la competencia.</p></div>
+        <div class="pilar-item"><div class="pilar-num">07</div><p class="pilar-text">La rentabilidad siempre vence al ego.</p></div>
+        <div class="pilar-item"><div class="pilar-num">08</div><p class="pilar-text">Antes de hacer más, aprende a hacer mejor.</p></div>
+        <div class="pilar-item"><div class="pilar-num">09</div><p class="pilar-text">Todo crecimiento tiene un precio. Si quieres pasar de etapa, debes convertirte en otro empresario.</p></div>
+        <div class="pilar-item"><div class="pilar-num">10</div><p class="pilar-text">La velocidad importa.</p></div>
+        <div class="pilar-item"><div class="pilar-num">11</div><p class="pilar-text">Una mala decisión cuesta más que una buena mentoría.</p></div>
+        <div class="pilar-item"><div class="pilar-num">12</div><p class="pilar-text">El empresario que deja de evolucionar empieza a desaparecer.</p></div>
       </div>
     </div>
 
     <!-- constitución del empresario -->
     <div class="phil-block">
       <h3>La constitución del empresario</h3>
-      <div class="phil-grid-5">
-        <div class="phil-art"><div class="art-num">ART. 1</div><p>El empresario asume la responsabilidad total de su empresa.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 2</div><p>Ninguna empresa crece por accidente.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 3</div><p>Toda empresa tiene un cuello de botella.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 4</div><p>Cada etapa exige una nueva versión del empresario.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 5</div><p>Las decisiones construyen empresas.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 6</div><p>La rentabilidad está por encima del ego.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 7</div><p>Primero se construye el empresario. Después la empresa.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 8</div><p>Nunca sacrifiques el largo plazo por resolver el corto.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 9</div><p>Todo crecimiento exige disciplina.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 10</div><p>El aprendizaje sin ejecución no cambia empresas.</p></div>
+      <div class="const-grid">
+        <div class="const-item"><div class="const-num">ART. 1</div><p class="const-text">El empresario asume la responsabilidad total de su empresa.</p></div>
+        <div class="const-item"><div class="const-num">ART. 2</div><p class="const-text">Ninguna empresa crece por accidente.</p></div>
+        <div class="const-item"><div class="const-num">ART. 3</div><p class="const-text">Toda empresa tiene un cuello de botella.</p></div>
+        <div class="const-item"><div class="const-num">ART. 4</div><p class="const-text">Cada etapa exige una nueva versión del empresario.</p></div>
+        <div class="const-item"><div class="const-num">ART. 5</div><p class="const-text">Las decisiones construyen empresas.</p></div>
+        <div class="const-item"><div class="const-num">ART. 6</div><p class="const-text">La rentabilidad está por encima del ego.</p></div>
+        <div class="const-item"><div class="const-num">ART. 7</div><p class="const-text">Primero se construye el empresario. Después la empresa.</p></div>
+        <div class="const-item"><div class="const-num">ART. 8</div><p class="const-text">Nunca sacrifiques el largo plazo por resolver el corto.</p></div>
+        <div class="const-item"><div class="const-num">ART. 9</div><p class="const-text">Todo crecimiento exige disciplina.</p></div>
+        <div class="const-item"><div class="const-num">ART. 10</div><p class="const-text">El aprendizaje sin ejecución no cambia empresas.</p></div>
       </div>
     </div>
 
