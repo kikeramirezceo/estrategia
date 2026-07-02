@@ -5,28 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mapa Maestro — Las 5 Etapas del Empresario</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
 <style>
+  /* ===================================================================== */
+  /* Sistema de marca Kike Ramírez — tipografía Inter Tight, paleta oficial */
+  /* ===================================================================== */
   :root{
-    --bg:#0a0a0f;
-    --bg-card:#12121a;
-    --line:#242430;
-    --gold:#d4a24c;
-    --white:#f5f4f0;
-    --muted:#8a8a97;
-    --c1:#4a90d9;
-    --c2:#4caf6d;
-    --c3:#9b6bce;
-    --c4:#e0793c;
-    --c5:#d4a24c;
+    /* neutros oficiales del manual */
+    --black:#0A0A0A;
+    --white:#FFFFFF;
+    --grey:#888888;          /* Gris Medio — texto secundario */
+    --bg:#0A0A0A;            /* Negro Absoluto — fondo principal */
+    --bg-card:#121212;
+    --line:#2A2A2A;
+    --gold:#DBAD30;          /* Oro Clásico */
+    --muted:#888888;
+    /* acentos de submarca (colores oficiales) para las 5 etapas */
+    --c1:#888888;            /* Sobreviviendo — gris (punto de partida) */
+    --c2:#D40000;            /* Crecer — Rojo Impacto */
+    --c3:#5C1FA0;            /* Escalar — Púrpura */
+    --c4:#00FF3F;            /* Impacto — Verde Neón */
+    --c5:#DBAD30;            /* Patrimonio — Oro Clásico */
+    /* familia tipográfica única de marca */
+    --f:'Inter Tight',sans-serif;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html,body{max-width:100%; overflow-x:hidden;}
+  html{max-width:100%; overflow-x:hidden; scroll-behavior:smooth; scroll-padding-top:80px;}
   body{
     background:var(--bg);
     color:var(--white);
-    font-family:'Inter',sans-serif;
-    padding:48px 24px 64px;
+    font-family:var(--f);
+    font-weight:400;
+    line-height:1.6;
+    padding:80px 24px 64px;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
     -webkit-text-size-adjust:100%;
   }
   .wrap{max-width:1180px; margin:0 auto;}
@@ -38,7 +52,7 @@
     justify-content:center; margin-bottom:8px;
   }
   .kr-mark{
-    font-family:'Anton',sans-serif; font-size:26px; letter-spacing:0.02em;
+    font-family:var(--f); font-weight:800; font-size:26px; letter-spacing:0.02em;
     color:var(--gold); line-height:1;
   }
   .kr-mark::after{
@@ -47,19 +61,18 @@
     margin:6px auto 0;
   }
   .kr-fullname{
-    font-family:'Inter',sans-serif; font-weight:800; font-size:15px;
+    font-family:var(--f); font-weight:800; font-size:15px;
     letter-spacing:0.08em; text-transform:uppercase; color:var(--white);
     margin-top:4px;
   }
   .kr-name{font-size:9.5px; letter-spacing:0.22em; color:var(--muted); text-transform:uppercase;}
 
   h1{
-    font-family:'Anton',sans-serif;
-    font-weight:400;
+    font-family:var(--f); font-weight:800;
     text-align:center;
-    font-size:clamp(32px,6vw,58px);
-    line-height:1.02;
-    letter-spacing:0.01em;
+    font-size:clamp(34px,6vw,60px);
+    line-height:0.98;
+    letter-spacing:-0.045em;
     margin-top:18px;
   }
   h1 span{color:var(--gold);}
@@ -88,12 +101,12 @@
     border:2px solid var(--bg); box-shadow:0 0 0 2px currentColor;
   }
   .step .price{
-    font-family:'Anton',sans-serif; font-size:clamp(15px,2.4vw,22px);
+    font-family:var(--f); font-weight:800; font-size:clamp(15px,2.4vw,22px);
     letter-spacing:0.01em;
   }
   .step:nth-child(1) .dot, .step:nth-child(1) .price{color:var(--c1);}
-  .step:nth-child(2) .dot, .step:nth-child(2) .price{color:var(--c2);}
-  .step:nth-child(3) .dot, .step:nth-child(3) .price{color:var(--c3);}
+  .step:nth-child(2) .dot, .step:nth-child(2) .price{color:#ff6b6b;}
+  .step:nth-child(3) .dot, .step:nth-child(3) .price{color:#b58be6;}
   .step:nth-child(4) .dot, .step:nth-child(4) .price{color:var(--c4);}
   .step:nth-child(5) .dot, .step:nth-child(5) .price{color:var(--c5);}
   .step .name{font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted);}
@@ -104,49 +117,80 @@
     margin-top:44px;
   }
   .card{
+    position:relative; overflow:hidden;
     background:var(--bg-card);
     border:1px solid var(--line);
-    border-top:3px solid var(--accent);
     border-radius:10px;
     padding:22px 18px 20px;
     display:flex; flex-direction:column; gap:14px;
     min-height:100%;
   }
-  .card:nth-child(1){--accent:var(--c1);}
-  .card:nth-child(2){--accent:var(--c2);}
-  .card:nth-child(3){--accent:var(--c3);}
-  .card:nth-child(4){--accent:var(--c4);}
-  .card:nth-child(5){--accent:var(--c5);}
+  .card::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:3px;
+    background:var(--accent);
+  }
+  /* --accent = color puro de marca (bordes/gráficos) · --accent-txt = variante
+     legible del mismo color para TEXTO sobre fondo oscuro (WCAG AA) */
+  .card:nth-child(1){--accent:var(--c1); --accent-txt:#9a9a9a;}
+  .card:nth-child(2){--accent:var(--c2); --accent-txt:#ff6b6b;}
+  .card:nth-child(3){--accent:var(--c3); --accent-txt:#b58be6;}
+  .card:nth-child(4){--accent:var(--c4); --accent-txt:var(--c4);}
+  .card:nth-child(5){--accent:var(--c5); --accent-txt:var(--c5);}
 
   .num{
-    font-family:'Anton',sans-serif; font-size:13px;
-    color:var(--accent); letter-spacing:0.08em;
+    font-family:var(--f); font-weight:800; font-size:13px;
+    color:var(--accent-txt); letter-spacing:0.08em;
   }
   .stage{
-    font-family:'Anton',sans-serif; font-size:22px;
-    line-height:1.05; text-transform:uppercase; letter-spacing:0.01em;
+    font-family:var(--f); font-weight:800; font-size:23px;
+    line-height:1.05; text-transform:uppercase; letter-spacing:-0.02em;
   }
-  .identity{
-    font-size:12.5px; color:var(--muted); line-height:1.5; min-height:60px;
+  .card-top{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  .card-ico{color:var(--accent-txt); flex:0 0 auto; display:flex;}
+  .card-ico svg{width:30px; height:30px;}
+  /* tag de "Foco principal" de la etapa */
+  .foco{
+    align-self:flex-start; display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,0.04); border:1px solid var(--line); border-radius:9px;
+    padding:6px 11px; margin-top:-2px;
+    font-size:12.5px; font-weight:700; color:var(--white); line-height:1.3; letter-spacing:-0.005em;
   }
+  .foco::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--accent); flex:0 0 auto;}
+  .foco span{color:var(--muted); font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; flex:0 0 auto;}
+  /* grupo etiqueta + valor dentro de la tarjeta */
+  .field{display:flex; flex-direction:column; gap:4px;}
   .divider{height:1px; background:var(--line);}
   .label{
-    font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent);
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent);
     font-weight:700;
   }
-  .offer{font-size:12.5px; line-height:1.5; color:var(--white);}
+  .field .label{color:var(--muted);}          /* etiquetas de campo en gris, quietas */
+  .offer{font-size:15px; line-height:1.55; color:var(--white);}
+  .c-quote{
+    font-size:14px; font-style:italic; line-height:1.5; color:var(--muted);
+    border-left:2px solid var(--accent); padding-left:10px;
+  }
+  .c-format{font-size:12.5px; color:var(--muted); margin-top:1px;}
   .price-tag{
-    font-family:'Anton',sans-serif; font-size:26px; color:var(--accent);
-    margin-top:auto;
+    font-family:var(--f); font-weight:800; font-size:27px; color:var(--accent-txt);
+    letter-spacing:-0.02em; margin-top:2px;
   }
   .price-tag small{
-    display:block; font-family:'Inter',sans-serif; font-size:9px;
-    color:var(--muted); font-weight:600; letter-spacing:0.08em;
-    text-transform:uppercase; margin-top:2px;
+    display:block; font-family:var(--f); font-size:11px;
+    color:var(--muted); font-weight:600; letter-spacing:0.06em;
+    text-transform:uppercase; margin-top:3px;
   }
   .sells{
-    font-size:11px; font-style:italic; color:var(--muted);
-    border-left:2px solid var(--accent); padding-left:8px;
+    font-size:14px; font-style:italic; color:var(--white);
+    border-left:2px solid var(--accent); padding-left:8px; line-height:1.45;
+  }
+  .result{
+    margin-top:auto; padding-top:12px; border-top:1px solid var(--line);
+    font-size:13.5px; line-height:1.5; color:var(--white);
+  }
+  .result b{
+    display:block; font-family:var(--f); font-weight:800; font-size:10.5px;
+    letter-spacing:0.1em; text-transform:uppercase; color:var(--accent-txt); margin-bottom:4px;
   }
 
   footer{
@@ -159,150 +203,106 @@
   footer strong{color:var(--gold); font-weight:600;}
 
   @media (max-width: 900px){
-    .grid{grid-template-columns:1fr; }
+    .grid{grid-template-columns:1fr;}
     .ladder{display:none;}
     .card{min-height:auto;}
-    .identity{min-height:auto;}
   }
 
   /* ---------- section 2: reglas de discurso ---------- */
   .rules-section{margin-top:80px;}
   .rules-grid{
-    display:grid; grid-template-columns:1fr 2.1fr;
+    display:grid; grid-template-columns:1fr;
     gap:0; border-radius:12px; overflow:hidden;
     border:1px solid var(--line);
   }
   .rules-left{
-    background:#050505; padding:32px 28px;
+    background:var(--black); padding:32px 28px;
   }
   .rules-left h2{
-    font-family:'Anton',sans-serif; font-size:26px; line-height:1.05;
-    text-transform:uppercase;
+    font-family:var(--f); font-weight:800; font-size:26px; line-height:1.05;
+    text-transform:uppercase; letter-spacing:-0.02em;
   }
   .rules-left h2 .x{color:var(--gold);}
   .rules-left .lede{
-    color:var(--muted); font-size:12px; margin-top:8px; line-height:1.5;
+    color:var(--muted); font-size:14px; margin-top:8px; line-height:1.55;
   }
   .rule-list{margin-top:22px; display:flex; flex-direction:column; gap:16px;}
   .rule-item{display:flex; gap:12px; align-items:flex-start;}
   .rule-num{
-    flex:0 0 auto; width:22px; height:22px; border-radius:50%;
-    background:var(--gold); color:#0a0a0f; font-family:'Anton',sans-serif;
-    font-size:11px; display:flex; align-items:center; justify-content:center;
+    flex:0 0 auto; width:23px; height:23px; border-radius:50%;
+    background:var(--gold); color:var(--black); font-family:var(--f); font-weight:800;
+    font-size:12px; display:flex; align-items:center; justify-content:center;
   }
-  .rule-item h3{font-size:12.5px; text-transform:uppercase; letter-spacing:0.02em; margin-bottom:3px;}
-  .rule-item p{font-size:11.5px; color:var(--muted); line-height:1.45;}
+  .rule-item h3{font-size:14px; text-transform:uppercase; letter-spacing:0.01em; margin-bottom:4px;}
+  .rule-item p{font-size:13.5px; color:var(--muted); line-height:1.55;}
   .gold-box{
     margin-top:24px; border:1px solid var(--gold); border-radius:8px;
     padding:16px; text-align:center;
   }
-  .gold-box .k{color:var(--gold); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; font-weight:700;}
-  .gold-box p{font-size:12px; margin-top:8px; line-height:1.5; color:var(--white);}
+  .gold-box .k{color:var(--gold); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; font-weight:700;}
+  .gold-box p{font-size:14px; margin-top:8px; line-height:1.55; color:var(--white);}
   .gold-box p em{color:var(--gold); font-style:normal;}
 
-  .rules-right{background:#f4f1ea; color:#141414; padding:32px 28px;}
+  .rules-right{background:var(--white); color:var(--black); padding:32px 28px;}
   .rules-right h2{
-    font-family:'Anton',sans-serif; font-size:26px; text-transform:uppercase; color:#141414;
+    font-family:var(--f); font-weight:800; font-size:26px; text-transform:uppercase;
+    color:var(--black); letter-spacing:-0.02em;
   }
-  .rules-right h2 .accent{color:var(--gold);}
-  .rules-right .lede{font-size:12px; color:#5a5850; margin-top:6px;}
-
-  .timeline{display:flex; align-items:center; justify-content:center; gap:6px; margin:26px 0 20px;}
-  .tl-badge{
-    width:60px; height:60px; border-radius:50%; background:#0d0d0d;
-    border:2px solid var(--gold); display:flex; align-items:center; justify-content:center;
-    flex:0 0 auto;
-  }
-  .tl-arrow{color:#c9c4b8; font-size:16px;}
-
-  .tl-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px;}
-  .tl-col{display:flex; flex-direction:column;}
-  .tl-head{
-    font-family:'Anton',sans-serif; font-size:10px; text-align:center;
-    padding:7px 4px; color:#fff; letter-spacing:0.02em;
-  }
-  .tl-col:nth-child(1) .tl-head{background:#141414;}
-  .tl-col:nth-child(2) .tl-head{background:var(--c2);}
-  .tl-col:nth-child(3) .tl-head{background:var(--c3);}
-  .tl-col:nth-child(4) .tl-head{background:var(--c4);}
-  .tl-col:nth-child(5) .tl-head{background:var(--c5);}
-  .tl-name{
-    font-family:'Anton',sans-serif; font-size:13px; text-align:center;
-    padding:12px 6px 6px; line-height:1.1;
-  }
-  .tl-obj-k{font-size:8.5px; text-align:center; letter-spacing:0.1em; color:#8a8578; margin-top:8px;}
-  .tl-obj{font-size:10.5px; text-align:center; padding:2px 8px 10px; line-height:1.35; color:#2a2a28;}
-  .tl-prod-k{font-size:8.5px; text-align:center; letter-spacing:0.1em; color:#8a8578;}
-  .tl-prod{font-size:9.5px; text-align:center; padding:4px 8px 4px; line-height:1.5; color:#2a2a28; flex:1;}
-  .tl-price{
-    font-family:'Anton',sans-serif; font-size:14px; text-align:center;
-    padding:4px 4px 10px; color:#141414;
-  }
-  .tl-sell{
-    text-align:center; font-family:'Anton',sans-serif; font-size:9px;
-    text-transform:uppercase; color:#fff; padding:8px 4px; line-height:1.25;
-  }
-  .tl-col:nth-child(1) .tl-sell{background:#141414;}
-  .tl-col:nth-child(2) .tl-sell{background:var(--c2);}
-  .tl-col:nth-child(3) .tl-sell{background:var(--c3);}
-  .tl-col:nth-child(4) .tl-sell{background:var(--c4);}
-  .tl-col:nth-child(5) .tl-sell{background:var(--c5);}
+  .rules-right h2 .accent{color:#B8901F;}
+  .rules-right .lede{font-size:14px; color:#707070; margin-top:6px; line-height:1.55; max-width:640px;}
 
   .principle-box{
-    margin-top:22px; border:1px solid #dcd7c9; border-radius:8px;
+    margin-top:22px; border:1px solid #E8E8E8; border-radius:8px;
     padding:16px 18px; display:flex; gap:20px; align-items:center; flex-wrap:wrap;
   }
   .principle-box .pk{
-    font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:#8a8578; font-weight:700;
+    font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#707070; font-weight:700;
   }
   .principle-box .pv{
-    font-family:'Anton',sans-serif; font-size:16px; color:#141414; line-height:1.2; margin-top:4px;
+    font-family:var(--f); font-weight:800; font-size:17px; color:var(--black);
+    line-height:1.35; letter-spacing:-0.015em; margin-top:4px;
   }
   .principle-box .pv em{color:var(--c2); font-style:normal;}
 
-  @media (max-width: 900px){
-    .rules-grid{grid-template-columns:1fr;}
-    .tl-grid{grid-template-columns:1fr;}
-    .timeline{display:none;}
-  }
-
   /* ---------- section 3: manifiesto de posicionamiento ---------- */
   .position-section{
-    margin-top:80px; border-radius:14px; overflow:hidden;
-    background:radial-gradient(ellipse at 50% 30%, #16161f 0%, #08080b 70%);
+    margin-top:36px; border-radius:14px; overflow:hidden;
+    background:radial-gradient(ellipse at 50% 30%, #171717 0%, #0A0A0A 70%);
     border:1px solid var(--line);
     padding:52px 32px 40px;
   }
   .position-head{
-    font-family:'Anton',sans-serif; text-align:center;
-    font-size:clamp(24px,4.4vw,42px); line-height:1.08;
-    text-transform:uppercase;
+    font-family:var(--f); font-weight:800; text-align:center;
+    font-size:clamp(28px,5vw,46px); line-height:1.06;
+    text-transform:uppercase; letter-spacing:-0.03em;
+    text-wrap:balance;
   }
   .position-head .accent{color:var(--gold);}
   .position-quote{
-    max-width:620px; margin:26px auto 0; text-align:center;
-    font-size:16px; line-height:1.55; color:var(--white); position:relative;
+    max-width:780px; margin:30px auto 0; text-align:center;
+    font-size:clamp(18px,2.6vw,24px); font-weight:500;
+    line-height:1.5; color:var(--white); position:relative;
+    text-wrap:balance;
   }
   .position-quote em{color:var(--gold); font-style:normal;}
-  .qmark{color:var(--gold); font-size:34px; font-family:Georgia,serif; line-height:0; position:relative; top:8px;}
+  .qmark{color:var(--gold); font-size:38px; font-family:var(--f); font-weight:800; line-height:0; position:relative; top:10px;}
 
   .position-body{
     display:grid; grid-template-columns:1fr 1.3fr 1fr;
     gap:28px; align-items:start; margin-top:44px;
   }
-  .position-lede{font-size:13px; line-height:1.6; margin-bottom:18px;}
+  .position-lede{font-size:16px; line-height:1.6; margin-bottom:18px;}
   .position-lede .accent{color:var(--gold);}
-  .position-list{display:flex; flex-direction:column; gap:14px;}
-  .pl-item{display:flex; gap:10px; align-items:flex-start; font-size:12px; line-height:1.4;}
-  .pl-item svg{flex:0 0 auto; margin-top:1px; color:var(--gold);}
+  .position-list{display:flex; flex-direction:column; gap:16px;}
+  .pl-item{display:flex; gap:14px; align-items:center; font-size:15px; line-height:1.5;}
 
-  .position-stairs{display:flex; align-items:center; justify-content:center;}
+  .position-stairs{display:flex; flex-direction:column; align-items:center; justify-content:center;}
   .stairs-labels{
-    display:flex; flex-direction:column; gap:8px; width:100%; max-width:210px; margin:0 auto;
+    display:flex; flex-direction:column; gap:10px; width:100%; max-width:230px; margin:0 auto;
   }
   .stair-step{
-    background:#111118; border:1px solid var(--line); border-radius:4px;
-    padding:8px 10px; font-family:'Anton',sans-serif; font-size:11px;
+    background:#171717; border:1px solid var(--line); border-radius:4px;
+    padding:12px 14px; font-family:var(--f); font-weight:700; font-size:14px;
     text-align:center; text-transform:uppercase; letter-spacing:0.02em;
     width:calc(100% - var(--indent,0px)); margin-left:auto;
   }
@@ -314,16 +314,16 @@
   .stair-step:nth-child(5){--indent:0px;}
 
   .position-col.right{display:flex; flex-direction:column; gap:22px;}
-  .pr-block{display:flex; gap:10px; align-items:flex-start;}
-  .pr-block svg{flex:0 0 auto; color:var(--gold); margin-top:2px;}
-  .pr-block h4{font-size:12px; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:4px;}
-  .pr-block p{font-size:11.5px; color:var(--muted); line-height:1.5;}
+  .pr-block{display:flex; gap:14px; align-items:flex-start;}
+  .pr-block h3{font-size:15px; text-transform:uppercase; letter-spacing:0.02em; margin-bottom:4px;}
+  .pr-block p{font-size:15px; color:var(--muted); line-height:1.55;}
   .pr-block p strong{color:var(--white);}
 
   .position-boxquote{
     max-width:640px; margin:44px auto 0; text-align:center;
-    border:1px solid var(--gold); border-radius:8px; padding:16px 20px;
-    font-family:'Anton',sans-serif; font-size:15px; line-height:1.4; text-transform:uppercase;
+    border:1px solid var(--gold); border-radius:8px; padding:18px 22px;
+    font-family:var(--f); font-weight:800; font-size:19px; line-height:1.4;
+    letter-spacing:-0.015em;
   }
   .position-boxquote .accent{color:var(--gold);}
 
@@ -333,7 +333,7 @@
   .pillar{
     display:flex; flex-direction:column; align-items:center; gap:8px;
     padding:0 24px; border-left:1px solid var(--line);
-    font-size:10.5px; text-align:center; text-transform:uppercase; letter-spacing:0.03em; color:var(--muted);
+    font-size:12px; text-align:center; text-transform:uppercase; letter-spacing:0.03em; color:var(--muted);
   }
   .pillar:first-child{border-left:none;}
   .pillar svg{color:var(--gold);}
@@ -343,11 +343,11 @@
     margin-top:44px; padding-top:24px; border-top:1px solid var(--line);
     flex-wrap:wrap; gap:16px;
   }
-  .sign-name{font-family:'Caveat',cursive; font-size:36px; color:var(--white);}
-  .sign-taglines{font-size:12px; line-height:1.5; color:var(--white); text-align:center;}
+  .sign-name{font-family:var(--f); font-weight:600; font-style:italic; font-size:36px; color:var(--white);}
+  .sign-taglines{font-size:14px; line-height:1.55; color:var(--white); text-align:center;}
   .sign-taglines .accent{color:var(--gold); font-weight:700;}
   .sign-slogan{
-    font-family:'Caveat',cursive; font-size:20px; color:var(--gold); text-align:right; line-height:1.2;
+    font-family:var(--f); font-weight:600; font-style:italic; font-size:22px; color:var(--gold); text-align:right; line-height:1.3;
   }
 
   @media (max-width: 860px){
@@ -363,8 +363,26 @@
     border-top:1px solid var(--line);
   }
   .closing-logo svg{width:150px; height:auto;}
-  .top-logo{display:flex; justify-content:center; margin-bottom:28px;}
-  .top-logo svg{width:130px; height:auto;}
+  .top-logo{display:flex; justify-content:center; margin-bottom:14px;}
+  .top-logo svg{width:clamp(150px,18vw,200px); height:auto;}
+
+  /* ---------- hero + brand lockup (Kike Ramírez Academy) ---------- */
+  .hero{text-align:center; padding:48px 0 40px;}
+  .brand-lockup{text-align:center; margin-bottom:20px;}
+  .brand-name{
+    font-family:var(--f); font-weight:700; font-size:clamp(13px,1.8vw,16px);
+    letter-spacing:0.16em; text-transform:uppercase; color:var(--white);
+    margin-top:20px;
+  }
+  .brand-name span{color:var(--white);}
+  .brand-tagline{
+    font-family:var(--f); font-weight:500; font-size:clamp(13px,1.6vw,15px);
+    color:var(--muted); margin-top:8px;
+  }
+  .brand-note{
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--muted); margin-top:6px; font-weight:600;
+  }
 
   /* ---------- section 4: filosofía ---------- */
   .philosophy-section{margin-top:80px;}
@@ -376,36 +394,20 @@
     font-size:11px; color:var(--gold); text-transform:uppercase; letter-spacing:0.1em; font-weight:700;
   }
   .phil-title h2{
-    font-family:'Anton',sans-serif; font-size:clamp(22px,3.6vw,34px);
-    line-height:1.08; text-transform:uppercase; margin-top:4px;
+    font-family:var(--f); font-weight:800; font-size:clamp(24px,3.8vw,36px);
+    line-height:1.05; text-transform:uppercase; margin-top:4px; letter-spacing:-0.03em;
   }
   .phil-title h2 .accent{color:var(--gold);}
-  .phil-sub{font-size:12px; color:var(--muted); margin-top:8px; max-width:480px; line-height:1.5;}
+  .phil-sub{font-size:14px; color:var(--muted); margin-top:8px; max-width:480px; line-height:1.55;}
   .phil-quote{
-    max-width:270px; font-size:12px; line-height:1.55; color:var(--white);
+    max-width:270px; font-size:14px; line-height:1.6; color:var(--white);
     padding-left:16px; border-left:2px solid var(--gold);
   }
 
-  .phil-etapas{display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:48px;}
-  .pe-card{
-    background:var(--bg-card); border:1px solid var(--line); border-top:3px solid var(--accent);
-    border-radius:8px; padding:16px 14px; display:flex; flex-direction:column; gap:8px; min-height:100%;
-  }
-  .pe-card:nth-child(1){--accent:var(--c1);}
-  .pe-card:nth-child(2){--accent:var(--c2);}
-  .pe-card:nth-child(3){--accent:var(--c3);}
-  .pe-card:nth-child(4){--accent:var(--c4);}
-  .pe-card:nth-child(5){--accent:var(--c5);}
-  .pe-num{font-family:'Anton',sans-serif; font-size:10px; color:var(--accent); letter-spacing:0.05em;}
-  .pe-name{font-family:'Anton',sans-serif; font-size:15px; text-transform:uppercase; line-height:1.1;}
-  .pe-desc{font-size:10.5px; color:var(--muted); line-height:1.45;}
-  .pe-foco-k{font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-top:auto;}
-  .pe-foco{font-size:11px; font-weight:700;}
-
   .phil-block{margin-bottom:48px;}
   .phil-block h3{
-    font-family:'Anton',sans-serif; font-size:15px; text-transform:uppercase;
-    text-align:center; margin-bottom:22px; letter-spacing:0.02em; color:var(--white);
+    font-family:var(--f); font-weight:800; font-size:17px; text-transform:uppercase;
+    text-align:center; margin-bottom:22px; letter-spacing:-0.01em; color:var(--white);
   }
 
   .phil-grid-6{display:grid; grid-template-columns:repeat(6,1fr); gap:16px;}
@@ -414,16 +416,16 @@
 
   .phil-item{display:flex; flex-direction:column; gap:8px; align-items:center; text-align:center;}
   .phil-item .badge{
-    width:34px; height:34px; border-radius:50%; border:1.5px solid var(--gold);
+    width:38px; height:38px; border-radius:50%; border:1.5px solid var(--gold);
     display:flex; align-items:center; justify-content:center;
-    font-family:'Anton',sans-serif; font-size:13px; color:var(--gold); flex:0 0 auto;
+    font-family:var(--f); font-weight:800; font-size:14px; color:var(--gold); flex:0 0 auto;
   }
-  .phil-item h4{font-size:10.5px; text-transform:uppercase; letter-spacing:0.02em;}
-  .phil-item p{font-size:10px; color:var(--muted); line-height:1.4;}
+  .phil-item h4{font-size:13px; text-transform:uppercase; letter-spacing:0.02em;}
+  .phil-item p{font-size:13px; color:var(--muted); line-height:1.5;}
 
-  .phil-art{display:flex; flex-direction:column; gap:5px; align-items:center; text-align:center;}
-  .phil-art .art-num{font-family:'Anton',sans-serif; font-size:11px; color:var(--gold); letter-spacing:0.06em;}
-  .phil-art p{font-size:10px; color:var(--muted); line-height:1.4;}
+  .phil-art{display:flex; flex-direction:column; gap:6px; align-items:center; text-align:center;}
+  .phil-art .art-num{font-family:var(--f); font-weight:800; font-size:13px; color:var(--gold); letter-spacing:0.04em;}
+  .phil-art p{font-size:13px; color:var(--muted); line-height:1.5;}
 
   .phil-filter{
     display:flex; gap:20px; align-items:center; border:1px solid var(--line);
@@ -433,20 +435,19 @@
     width:52px; height:52px; border:2px solid var(--gold); border-radius:8px;
     display:flex; align-items:center; justify-content:center; flex:0 0 auto; color:var(--gold);
   }
-  .phil-filter-q{font-family:'Anton',sans-serif; font-size:14px; text-transform:uppercase; flex:1; min-width:220px; line-height:1.3;}
-  .phil-filter-answers{display:flex; flex-direction:column; gap:6px; font-size:10.5px; line-height:1.4;}
-  .phil-filter-answers .yes{color:var(--c2);}
-  .phil-filter-answers .no{color:#e0645c;}
+  .phil-filter-q{font-family:var(--f); font-weight:800; font-size:17px; flex:1; min-width:220px; line-height:1.35; letter-spacing:-0.015em;}
+  .phil-filter-answers{display:flex; flex-direction:column; gap:8px; font-size:13px; line-height:1.5;}
+  .phil-filter-answers .yes{color:var(--c4);}
+  .phil-filter-answers .no{color:#ff6b6b;}
   .phil-filter-answers b{display:block; letter-spacing:0.04em;}
 
   .phil-mission{
-    text-align:center; font-family:'Anton',sans-serif; font-size:13px; text-transform:uppercase;
-    line-height:1.6; border-top:1px solid var(--line); padding-top:24px;
+    text-align:center; font-family:var(--f); font-weight:800; font-size:17px;
+    line-height:1.5; border-top:1px solid var(--line); padding-top:24px; letter-spacing:-0.015em;
   }
   .phil-mission .accent{color:var(--gold);}
 
   @media (max-width: 900px){
-    .phil-etapas{grid-template-columns:1fr;}
     .phil-grid-6{grid-template-columns:repeat(2,1fr);}
     .phil-grid-5{grid-template-columns:repeat(2,1fr);}
     .phil-grid-4{grid-template-columns:repeat(2,1fr);}
@@ -463,19 +464,19 @@
     .position-section,
     .philosophy-section{margin-top:56px;}
 
-    /* encabezado */
-    .sub{font-size:14px; max-width:100%;}
+    /* encabezado — el cuerpo NO se reduce (rango del manual 14–18px) */
+    .sub{max-width:100%;}
 
     /* ---- section 3: manifiesto ---- */
     .position-section{padding:32px 18px 32px;}
-    .position-quote{font-size:15px; margin-top:22px;}
+    .position-quote{margin-top:22px;}
     .position-body{gap:24px; margin-top:32px;}
-    .position-boxquote{margin-top:32px; padding:14px 16px; font-size:14px;}
+    .position-boxquote{margin-top:32px; padding:15px 16px;}
 
     /* pilares: de divisores verticales a rejilla ordenada de 2 col */
     .position-pillars{
       display:grid; grid-template-columns:repeat(2,1fr);
-      gap:20px 12px; margin-top:28px;
+      gap:22px 12px; margin-top:28px;
     }
     .pillar{
       padding:16px 8px 0; border-left:none; border-top:1px solid var(--line);
@@ -489,16 +490,17 @@
     /* ---- section 2: reglas de discurso ---- */
     .rules-left{padding:24px 18px;}
     .rules-right{padding:24px 18px;}
+    /* los h2 (Heading del manual) solo bajan un poco para caber, sin perder jerarquía */
     .rules-left h2,
-    .rules-right h2{font-size:22px;}
+    .rules-right h2{font-size:23px;}
     .principle-box{padding:14px 16px; gap:14px;}
 
     /* ---- section 4: filosofía ---- */
     .phil-topbar{flex-direction:column; gap:16px; margin-bottom:32px;}
     .phil-quote{max-width:100%;}
     .phil-grid-6,
-    .phil-grid-5{grid-template-columns:repeat(2,1fr); gap:18px 14px;}
-    .phil-grid-4{grid-template-columns:repeat(2,1fr); gap:18px 14px;}
+    .phil-grid-5{grid-template-columns:repeat(2,1fr); gap:22px 16px;}
+    .phil-grid-4{grid-template-columns:repeat(2,1fr); gap:22px 16px;}
     .phil-filter{padding:18px; gap:16px;}
     .phil-filter-q{min-width:0;}
     .phil-block{margin-bottom:40px;}
@@ -508,31 +510,198 @@
   /* ========= RESPONSIVE: teléfonos pequeños (≤400px) ======= */
   /* ========================================================= */
   @media (max-width: 400px){
-    body{padding:24px 12px 36px;}
+    body{padding:80px 12px 36px;}
 
     .position-section{padding:26px 14px 28px;}
     .rules-left,
     .rules-right{padding:20px 14px;}
 
-    /* títulos grandes con px fijos: bajarlos un punto */
-    .stage{font-size:20px;}
-    .price-tag{font-size:23px;}
-    .position-head{font-size:22px;}
-    .sign-name{font-size:30px;}
-    .sign-slogan{font-size:18px;}
-
-    /* pilares y filosofía: 1 columna para respirar */
+    /* Sin reducir titulares ni cuerpo: la tipografía se mantiene en la
+       escala del manual; en móvil pequeño solo cambia el layout. */
     .position-pillars{grid-template-columns:1fr;}
     .pillar:nth-child(5){grid-column:auto;}
     .phil-grid-6,
     .phil-grid-5,
     .phil-grid-4{grid-template-columns:1fr;}
+    .pilares-grid{grid-template-columns:1fr;}
+    .const-grid{grid-template-columns:1fr;}
+  }
+
+  /* ================================================================ */
+  /* ============ REVISIÓN 8 — DISEÑO TIPO WEBSITE ================= */
+  /* ================================================================ */
+
+  /* --- Nav bar fija --- */
+  .site-nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    height:64px;
+    background:rgba(10,10,10,0.92);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1180px; margin:0 auto; height:100%;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 24px; position:relative;
+  }
+  .nav-logo{display:flex; align-items:center; text-decoration:none;}
+  .nav-logo svg{width:100px; height:auto;}
+  .nav-toggle-input{display:none;}
+  .nav-hamburger{display:none;}
+  .nav-links{display:flex; gap:28px; list-style:none;}
+  .nav-links a{
+    font-family:var(--f); font-size:12px; font-weight:600;
+    letter-spacing:0.07em; text-transform:uppercase;
+    color:var(--muted); text-decoration:none;
+    transition:color 0.2s;
+  }
+  .nav-links a:hover{color:var(--white);}
+
+  /* --- Section eyebrow --- */
+  .section-eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:11px; font-weight:700; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:12px;
+  }
+  .section-eyebrow::before{
+    content:""; width:20px; height:1px; background:var(--gold); display:block;
+  }
+  .section-anchor{display:block; height:0;}
+
+  /* Column eyebrow (inside manifiesto body) */
+  .col-eyebrow{
+    font-size:10px; font-weight:700; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:14px;
+  }
+
+  /* --- Icon badge --- */
+  .icon-badge{
+    width:52px; height:52px; border-radius:50%;
+    border:1.5px solid var(--gold); flex:0 0 auto;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--gold); background:rgba(219,173,48,0.05);
+  }
+  .icon-badge svg{width:22px; height:22px;}
+
+  /* --- Conceptos Clave --- */
+  .concept-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+  }
+  .concept-card{
+    background:var(--bg-card); border:1px solid var(--line);
+    border-radius:10px; padding:24px 20px;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .concept-num{
+    width:48px; height:48px; border-radius:50%;
+    border:1.5px solid var(--gold); flex:0 0 auto;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--f); font-weight:800; font-size:18px; color:var(--gold);
+  }
+  .concept-title{
+    font-weight:700; font-size:15px; text-transform:uppercase;
+    letter-spacing:0.02em; line-height:1.3; color:var(--white);
+  }
+  .concept-desc{font-size:14px; color:var(--muted); line-height:1.6;}
+
+  /* --- 12 Pilares --- */
+  .pilares-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+  }
+  .pilar-item{
+    background:var(--bg-card); border:1px solid var(--line);
+    border-radius:8px; padding:20px 18px;
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .pilar-num{
+    font-family:var(--f); font-weight:800; font-size:42px;
+    color:rgba(219,173,48,0.22); line-height:1; letter-spacing:-0.04em;
+  }
+  .pilar-text{font-size:14px; color:var(--white); line-height:1.6;}
+
+  /* --- Constitución del Empresario --- */
+  .const-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:16px;
+  }
+  .const-item{
+    background:var(--bg-card); border:1px solid var(--line);
+    border-radius:8px; padding:18px 20px;
+    display:flex; gap:16px; align-items:flex-start;
+  }
+  .const-num{
+    font-family:var(--f); font-weight:800; font-size:11px;
+    letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--gold); flex:0 0 auto; padding-top:3px; white-space:nowrap;
+  }
+  .const-text{font-size:15px; line-height:1.55; color:var(--white);}
+
+  /* --- Responsive nav en móvil --- */
+  @media (max-width:600px){
+    .nav-hamburger{
+      display:flex; flex-direction:column; gap:5px;
+      padding:10px; cursor:pointer; z-index:10; background:none; border:none;
+    }
+    .nav-hamburger span{
+      display:block; width:22px; height:2px;
+      background:var(--white); border-radius:2px;
+      transition:transform 0.2s;
+    }
+    .nav-links{
+      position:absolute; top:64px; left:0; right:0;
+      background:rgba(10,10,10,0.97);
+      border-bottom:1px solid var(--line);
+      flex-direction:column; gap:0;
+      display:none;
+    }
+    .nav-toggle-input:checked ~ .nav-links{display:flex;}
+    .nav-links li a{
+      display:block; padding:16px 24px;
+      border-bottom:1px solid var(--line); font-size:14px;
+    }
+    /* Grids filosóficos */
+    .concept-grid{grid-template-columns:1fr;}
+    .pilares-grid{grid-template-columns:repeat(2,1fr);}
+    .const-grid{grid-template-columns:1fr;}
+    /* Icon badges más pequeños en móvil */
+    .icon-badge{width:44px; height:44px;}
+    .icon-badge svg{width:20px; height:20px;}
+  }
+  @media (min-width:601px){
+    .nav-hamburger{display:none;}
+    .nav-links{display:flex !important;}
   }
 </style>
 </head>
 <body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg width="100" height="30" viewBox="0 0 140 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_nav)">
+      <path d="M121.773 27.2256C122.172 27.2624 122.57 27.336 122.963 27.336C123.496 27.336 123.833 27.5751 123.84 28.0963C123.846 28.5869 123.594 28.9609 123.036 28.9548C105.346 28.7831 96.8041 29.0038 75.7349 30.4326C71.5223 30.7085 67.3159 31.1132 63.1339 31.6344C56.3275 32.4745 49.5457 33.4801 42.7699 34.5348C36.6258 35.4914 30.5123 36.6258 24.3988 37.7234C18.8004 38.7229 7.43798 41.3412 7.31534 41.3657C5.96019 41.66 4.79513 41.3044 4.789 40.4398C4.789 39.4342 5.7885 39.2686 6.56112 39.0969C10.1973 38.2875 13.8335 37.4597 17.4881 36.7423C21.3696 35.988 25.5822 35.0621 29.4882 34.4857C35.4423 33.6089 41.0101 32.6032 46.9764 31.8C51.9187 31.1316 56.8549 30.3651 61.8094 29.7826C66.5678 29.2184 71.3323 28.6788 76.1151 28.3416C81.4621 27.9614 99.772 26.453 121.767 27.2501Z" fill="white"/>
+      <path d="M8.98321 20.9097C12.5704 18.6103 16.6665 15.9981 20.1923 13.7048C21.2286 13.0303 22.2465 12.3251 23.2153 11.5525C23.6139 11.2336 23.9757 10.878 24.2332 10.3384C24.6195 9.51669 25.5761 9.52895 26.2383 10.0318C26.9129 10.5468 26.8577 11.2397 26.2322 11.9081C24.1964 14.0911 21.5781 15.4462 19.107 17.016C15.3113 19.4197 11.5218 21.8357 7.70778 24.2026C7.16204 24.5398 6.59791 24.8219 6.23 25.3431C6.0767 25.5638 6.23 25.8704 6.49367 25.895C7.62807 26.0053 8.68275 25.527 9.73131 25.3247C11.3685 25.0058 13.018 24.7483 14.6613 24.4601C15.391 24.3313 16.2188 24.3436 16.3476 25.1407C16.4641 25.8643 15.7038 26.269 15.017 26.4162C11.7916 27.1275 8.56625 27.8878 5.31635 28.4765C4.21261 28.6788 3.70366 29.2675 3.42159 30.175C3.18245 30.966 2.9801 31.6896 2.44049 32.2599C2.15229 32.5665 1.45326 32.4561 1.10374 31.9962C0.582529 31.3156 1.22025 30.6472 1.45939 30.0708C1.75985 29.335 1.92541 28.9364 0.962706 28.5685C-0.251408 28.1024 -0.312727 26.6737 0.778749 25.944C1.33675 25.57 1.93768 25.245 2.54473 24.9568C5.69039 23.4667 6.75734 20.3272 8.30258 17.6046C9.22849 15.9797 9.903 14.2137 10.6388 12.4907C10.7553 12.227 11.252 11.5893 10.3016 11.6199C10.1176 11.6261 10.0072 11.4544 10.0011 11.2643C9.97045 10.2096 11.5034 7.91013 13.0487 9.09972C13.7232 9.6148 13.6557 10.2341 13.4595 11.1048C12.7482 14.2934 9.25915 20.4069 8.97708 20.9097" fill="white"/>
+      <path d="M86.1714 14.925C86.153 14.8944 86.2327 14.8024 86.2573 14.7349C86.7969 13.2755 85.9691 11.9817 84.5035 12.2883C81.1187 13.0057 78.0957 14.4099 76.1948 17.5372C76.0231 17.8193 75.8944 18.1565 75.3425 18.1381C72.6015 18.04 69.8974 18.3895 67.1871 18.8249C66.5862 18.923 66.0711 18.9475 65.3291 18.9905C65.1022 19.0027 65.0103 18.7084 65.2004 18.5858C67.4262 17.1815 69.5295 15.8571 71.6204 14.5264C74.7538 12.5336 77.8811 10.5407 80.4871 7.84882C81.6829 6.61017 86.3983 1.72919 77.4887 0.343384C75.275 -1.6039e-06 73.0614 -0.153299 70.8172 0.202351C67.9536 0.649979 65.3966 1.98673 63.4405 3.88762C62.95 4.3659 62.7231 5.01588 63.3179 5.56162C63.8268 6.02764 64.3296 5.71492 64.7834 5.31635C66.3348 3.95507 68.9899 2.02352 73.3864 1.99899C82.4432 1.94994 78.7396 6.71442 77.8075 7.4809C75.2321 9.5964 72.4973 11.485 69.646 13.202C67.9107 14.2444 66.2673 15.4524 64.4523 16.3721C64.1089 16.55 63.7226 16.2188 63.8329 15.8448C63.8759 15.7099 63.9311 15.5811 64.0046 15.4462C65.3107 13.1652 66.623 10.8841 67.9965 8.64596C68.487 7.85495 68.3215 7.13752 67.7022 6.75734C66.8989 6.26066 66.4451 6.95969 66.0649 7.62807C64.1579 10.9822 62.1957 14.3057 60.3439 17.6905C59.7736 18.7329 59.0439 19.4503 57.9893 19.947C57.0388 20.3947 56.72 21.3942 57.3393 22.2036C57.6765 22.6451 57.56 22.9087 57.3883 23.2828C56.9039 24.3497 56.1436 25.2572 55.7572 26.3794C55.5488 26.9987 55.512 27.6119 56.1436 27.8878C57.1982 28.3477 58.1609 26.036 58.5534 24.9997C58.9642 23.9144 59.3751 22.6941 60.8835 22.3875C65.1513 21.5045 69.4191 20.6461 73.7666 20.3395C74.6005 20.2782 75.9128 20.1003 76.4094 20.6277C77.2924 21.7253 78.4698 21.7253 79.6532 21.2899C81.0329 20.781 82.3206 20.0758 83.5531 19.156C83.6083 19.7692 83.3753 20.4069 84.1969 20.5725C84.7672 20.6829 85.2394 20.4253 85.2762 19.9593C85.4049 18.2485 87.3671 16.8688 86.1714 14.9311M84.1479 15.6057C82.8663 16.9301 81.5541 17.8683 80.0825 18.6839C79.5735 18.9659 78.8193 19.1192 78.4146 18.4386C78.1938 18.0645 78.7702 17.5433 79.0891 17.2858C80.4197 16.2066 81.8484 15.2991 83.6819 14.8146C84.1479 14.692 84.4851 15.2623 84.1479 15.6057Z" fill="white"/>
+      </g>
+      <defs><clipPath id="clip0_nav"><rect width="139.126" height="41.4638" fill="white"/></clipPath></defs>
+      </svg>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+    <label for="nav-toggle" class="nav-hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </label>
+    <ul class="nav-links">
+      <li><a href="#manifiesto">Posicionamiento</a></li>
+      <li><a href="#etapas">Las 5 Etapas</a></li>
+      <li><a href="#reglas">Reglas de Discurso</a></li>
+      <li><a href="#filosofia">Filosofía</a></li>
+    </ul>
+  </div>
+</nav>
+
 <div class="wrap">
 
+  <div class="hero">
   <div class="top-logo">
     <svg width="140" height="42" viewBox="0 0 140 42" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g clip-path="url(#clip0_top_284_56)">
@@ -555,11 +724,18 @@
     </svg>
   </div>
 
+  <div class="brand-lockup">
+    <div class="brand-name">Kike Ramírez <span>Academy</span></div>
+    <div class="brand-tagline">No formamos emprendedores. Formamos empresarios.</div>
+    <div class="brand-note">La carrera completa de un empresario</div>
+  </div>
+  </div><!-- /.hero -->
+
 
   <!-- ============ SECTION 3: MANIFIESTO DE POSICIONAMIENTO ============ -->
-  <div class="position-section">
+  <section id="manifiesto" class="position-section">
 
-    <h2 class="position-head">NO HAGO CRECER EMPRESAS,<br><span class="accent">HAGO EVOLUCIONAR<br>AL EMPRESARIO</span><br>QUE LAS DIRIGE.</h2>
+    <h2 class="position-head">No hago crecer empresas,<br><span class="accent">hago evolucionar al empresario que las dirige.</span></h2>
 
     <div class="position-quote">
       <span class="qmark">&ldquo;</span>No puedes construir un negocio de <em>diez millones</em> con la forma de pensar que construyó uno de <em>cien mil</em>.<span class="qmark">&rdquo;</span>
@@ -568,17 +744,19 @@
     <div class="position-body">
 
       <div class="position-col left">
+        <p class="col-eyebrow">Mi método</p>
         <p class="position-lede">Mi trabajo no es enseñarte <span class="accent">herramientas</span>. Es transformar tu forma de pensar para que <span class="accent">todo cambie</span>.</p>
         <div class="position-list">
-          <div class="pl-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg><span>Veo lo que otros no ven</span></div>
-          <div class="pl-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2"/></svg><span>Encuentro el verdadero problema</span></div>
-          <div class="pl-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2 4h5l-4 4 1.5 5-4.5-3-4.5 3L9 10 5 6h5z"/></svg><span>Cuestiono supuestos y rompo esquemas</span></div>
-          <div class="pl-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h7l-1 8 11-14h-7z"/></svg><span>Te doy claridad y decisiones que generan impacto</span></div>
-          <div class="pl-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20V10M10 20V4M17 20v-7"/></svg><span>Te acompaño hasta que lo ejecutes</span></div>
+          <div class="pl-item"><div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></div><span>Veo lo que otros no ven</span></div>
+          <div class="pl-item"><div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2"/></svg></div><span>Encuentro el verdadero problema</span></div>
+          <div class="pl-item"><div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2 4h5l-4 4 1.5 5-4.5-3-4.5 3L9 10 5 6h5z"/></svg></div><span>Cuestiono supuestos y rompo esquemas</span></div>
+          <div class="pl-item"><div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 11-14h-7z"/></svg></div><span>Te doy claridad y decisiones que generan impacto</span></div>
+          <div class="pl-item"><div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20V10M10 20V4M17 20v-7"/></svg></div><span>Te acompaño hasta que lo ejecutes</span></div>
         </div>
       </div>
 
       <div class="position-stairs">
+        <p class="col-eyebrow" style="text-align:center; margin-bottom:16px;">La transformación</p>
         <div class="stairs-labels">
           <div class="stair-step">Nuevos resultados</div>
           <div class="stair-step gold">Nueva versión de ti</div>
@@ -589,17 +767,18 @@
       </div>
 
       <div class="position-col right">
+        <p class="col-eyebrow">Mi posición</p>
         <div class="pr-block">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
-          <div><h4 class="accent">Mi mercado</h4><p><strong>Empresarios en transición.</strong> Los que saben que pueden más, pero necesitan dar el siguiente salto.</p></div>
+          <div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
+          <div><h3 class="accent">Mi mercado</h3><p><strong>Empresarios en transición.</strong> Los que saben que pueden más, pero necesitan dar el siguiente salto.</p></div>
         </div>
         <div class="pr-block">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3v18M5 4h11l-2 3 2 3H5"/></svg>
-          <div><h4 class="accent">Mi enemigo</h4><p>El empresario que sigue dirigiendo un negocio de hoy con la misma forma de pensar de ayer.</p></div>
+          <div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3v18M5 4h11l-2 3 2 3H5"/></svg></div>
+          <div><h3 class="accent">Mi enemigo</h3><p>El empresario que sigue dirigiendo un negocio de hoy con la misma forma de pensar de ayer.</p></div>
         </div>
         <div class="pr-block">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 12L2 9z"/></svg>
-          <div><h4 class="accent">Mi promesa</h4><p>Cada decisión correcta hoy te acerca a la empresa que quieres mañana.</p></div>
+          <div class="icon-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 12L2 9z"/></svg></div>
+          <div><h3 class="accent">Mi promesa</h3><p>Cada decisión correcta hoy te acerca a la empresa que quieres mañana.</p></div>
         </div>
       </div>
 
@@ -620,14 +799,16 @@
       <div class="sign-slogan">No es suerte,<br>es evolución.</div>
     </div>
 
-  </div>
+  </section><!-- /#manifiesto -->
 
+  <div id="etapas" class="section-anchor"></div>
+  <div class="section-eyebrow">El camino completo</div>
   <h1>LAS 5 ETAPAS <span>DEL EMPRESARIO</span></h1>
   <p class="sub">Un solo camino, cinco versiones de ti mismo. Cada etapa exige una nueva identidad — y una decisión de a dónde quieres llegar.</p>
 
   <div class="ladder">
     <div class="step"><div class="dot"></div><div class="price">Gratis</div><div class="name">Sobreviviendo</div></div>
-    <div class="step"><div class="dot"></div><div class="price">$500</div><div class="name">Crecer</div></div>
+    <div class="step"><div class="dot"></div><div class="price">$497</div><div class="name">Crecer</div></div>
     <div class="step"><div class="dot"></div><div class="price">$3.000</div><div class="name">Escalar</div></div>
     <div class="step"><div class="dot"></div><div class="price">$5.000</div><div class="name">Impacto</div></div>
     <div class="step"><div class="dot"></div><div class="price">$10.000</div><div class="name">Patrimonio</div></div>
@@ -636,64 +817,69 @@
   <div class="grid">
 
     <div class="card">
-      <div class="num">ETAPA 01</div>
+      <div class="card-top"><div class="num">ETAPA 01</div><div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div></div>
       <div class="stage">Sobreviviendo</div>
-      <div class="identity">El negocio depende 100% de él. Vive apagando incendios, en modo reacción constante.</div>
+      <div class="foco"><span>Foco</span> Estabilidad y control</div>
+      <div class="field"><div class="label">Objetivo</div><div class="offer">Salir del caos.</div></div>
+      <div class="c-quote">&ldquo;Estoy apagando incendios todos los días.&rdquo;</div>
       <div class="divider"></div>
-      <div class="label">Oferta</div>
-      <div class="offer">Contenido gratuito, newsletter, podcast, diagnóstico.</div>
+      <div class="field"><div class="label">Productos</div><div class="offer">Contenido gratuito · Newsletter · Podcast · Diagnóstico Empresarial</div></div>
       <div class="price-tag">Gratis<small>Puerta de entrada</small></div>
-      <div class="sells">Vendemos esperanza con evidencia.</div>
+      <div class="field"><div class="label">Lo que vendemos</div><div class="sells">Esperanza con evidencia.</div></div>
     </div>
 
     <div class="card">
-      <div class="num">ETAPA 02</div>
+      <div class="card-top"><div class="num">ETAPA 02</div><div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div></div>
       <div class="stage">Crecer</div>
-      <div class="identity">El negocio funciona, pero depende demasiado de él. Necesita estructura, claridad y sistemas.</div>
+      <div class="foco"><span>Foco</span> Rentabilidad y sistemas</div>
+      <div class="field"><div class="label">Objetivo</div><div class="offer">Dejar de improvisar y construir un negocio rentable.</div></div>
       <div class="divider"></div>
-      <div class="label">Oferta</div>
-      <div class="offer">Programa de fundamentos + implementación. <em>(en reingeniería)</em></div>
-      <div class="price-tag">$500<small>Programa</small></div>
-      <div class="sells">Vendemos una nueva forma de pensar.</div>
+      <div class="field"><div class="label">Producto</div><div class="offer">Certificación en ADN Empresarial</div></div>
+      <div class="price-tag">497<small>USD · Certificación</small></div>
+      <div class="field"><div class="label">Lo que vendemos</div><div class="sells">Una nueva forma de pensar.</div></div>
+      <div class="result"><b>Resultado</b>El empresario deja de reaccionar y empieza a dirigir.</div>
     </div>
 
     <div class="card">
-      <div class="num">ETAPA 03</div>
+      <div class="card-top"><div class="num">ETAPA 03</div><div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></div></div>
       <div class="stage">Escalar</div>
-      <div class="identity">La empresa deja de depender de él. Construye equipo directivo, sistematiza, delega.</div>
+      <div class="foco"><span>Foco</span> Expansión y liderazgo</div>
+      <div class="field"><div class="label">Objetivo</div><div class="offer">Construir una empresa que funcione sin depender del dueño.</div></div>
       <div class="divider"></div>
-      <div class="label">Oferta</div>
-      <div class="offer">Mentoría de negocio 1:1.</div>
-      <div class="price-tag">$3.000<small>Mentoría</small></div>
-      <div class="sells">Vendemos aceleración y dirección.</div>
+      <div class="field"><div class="label">Producto</div><div class="offer">Mentoría de Negocios</div></div>
+      <div class="price-tag">3.000<small>USD · Mentoría 1:1</small></div>
+      <div class="field"><div class="label">Lo que vendemos</div><div class="sells">Aceleración y dirección.</div></div>
+      <div class="result"><b>Resultado</b>El empresario deja de ser el cuello de botella.</div>
     </div>
 
     <div class="card">
-      <div class="num">ETAPA 04</div>
+      <div class="card-top"><div class="num">ETAPA 04</div><div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49M7.76 16.24a6 6 0 0 1 0-8.49M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/></svg></div></div>
       <div class="stage">Impacto</div>
-      <div class="identity">Equipo sólido y procesos. Expande su marca, alianzas y posicionamiento.</div>
+      <div class="foco"><span>Foco</span> Multiplicación y posicionamiento</div>
+      <div class="field"><div class="label">Objetivo</div><div class="offer">Expandir influencia, relaciones y oportunidades de negocio.</div></div>
       <div class="divider"></div>
-      <div class="label">Oferta</div>
-      <div class="offer">Mastermind — grupo cerrado, cohorte de pares en el mismo nivel.</div>
-      <div class="price-tag">$5.000<small>Mastermind grupal</small></div>
-      <div class="sells">Vendemos multiplicación y posicionamiento.</div>
+      <div class="field"><div class="label">Producto</div><div class="offer">ADN Business Club</div><div class="c-format">Mastermind privado de empresarios</div></div>
+      <div class="price-tag">5.000<small>USD · Mastermind</small></div>
+      <div class="field"><div class="label">Lo que vendemos</div><div class="sells">Multiplicación y posicionamiento.</div></div>
+      <div class="result"><b>Resultado</b>El crecimiento deja de depender solo del empresario y empieza a depender de su entorno.</div>
     </div>
 
     <div class="card">
-      <div class="num">ETAPA 05</div>
+      <div class="card-top"><div class="num">ETAPA 05</div><div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20"/><path d="M9 3 6 9l6 12"/><path d="M15 3l3 6-6 12"/></svg></div></div>
       <div class="stage">Patrimonio</div>
-      <div class="identity">Multiplica riqueza, invierte con inteligencia, construye legado.</div>
+      <div class="foco"><span>Foco</span> Patrimonio y legado</div>
+      <div class="field"><div class="label">Objetivo</div><div class="offer">Multiplicar patrimonio, invertir, adquirir activos y construir legado.</div></div>
       <div class="divider"></div>
-      <div class="label">Oferta</div>
-      <div class="offer">Círculo privado por invitación — advisory 1:1, deal flow, experiencias exclusivas.</div>
-      <div class="price-tag">$10.000<small>Círculo privado</small></div>
-      <div class="sells">Vendemos multiplicación y legado.</div>
+      <div class="field"><div class="label">Producto</div><div class="offer">ADN Capital</div><div class="c-format">Consejo privado de empresarios</div></div>
+      <div class="price-tag">10.000<small>USD · Consejo privado</small></div>
+      <div class="field"><div class="label">Lo que vendemos</div><div class="sells">Multiplicación y patrimonio.</div></div>
+      <div class="result"><b>Resultado</b>El empresario deja de construir un negocio y empieza a construir riqueza.</div>
     </div>
 
   </div>
 
   <!-- ============ SECTION 2: REGLAS DE DISCURSO ============ -->
-  <div class="rules-section">
+  <div id="reglas" class="rules-section">
     <div class="rules-grid">
 
       <!-- left: qué no hablar -->
@@ -723,72 +909,7 @@
       <!-- right: hablemos por etapas -->
       <div class="rules-right">
         <h2>HABLEMOS POR <span class="accent">ETAPAS</span>, NO POR TEMAS</h2>
-        <p class="lede">Acompañamos la evolución del empresario en cada nivel.</p>
-
-        <div class="timeline">
-          <div class="tl-badge"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f4f1ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2"/><path d="M9 21l2-6-3-3 1-5 4 1 2 3h3"/><path d="M13 12l3 2 3-1"/></svg></div>
-          <div class="tl-arrow">›</div>
-          <div class="tl-badge"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f4f1ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
-          <div class="tl-arrow">›</div>
-          <div class="tl-badge"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f4f1ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
-          <div class="tl-arrow">›</div>
-          <div class="tl-badge"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f4f1ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/></svg></div>
-          <div class="tl-arrow">›</div>
-          <div class="tl-badge"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f4f1ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3l3 6-3 12M15 3l-3 6 3 12"/></svg></div>
-        </div>
-
-        <div class="tl-grid">
-          <div class="tl-col">
-            <div class="tl-head">ETAPA 1</div>
-            <div class="tl-name">SOBREVIVIENDO</div>
-            <div class="tl-obj-k">OBJETIVO</div>
-            <div class="tl-obj">Salir del caos.</div>
-            <div class="tl-prod-k">PRODUCTOS</div>
-            <div class="tl-prod">Contenido gratuito<br>Newsletter<br>Podcast<br>Diagnóstico</div>
-            <div class="tl-price">GRATIS</div>
-            <div class="tl-sell">VENDEMOS<br>ESPERANZA CON EVIDENCIA</div>
-          </div>
-          <div class="tl-col">
-            <div class="tl-head">ETAPA 2</div>
-            <div class="tl-name">CRECER</div>
-            <div class="tl-obj-k">OBJETIVO</div>
-            <div class="tl-obj">Dejar de improvisar y construir un negocio rentable.</div>
-            <div class="tl-prod-k">PRODUCTO</div>
-            <div class="tl-prod">Programa de fundamentos + implementación. (En reingeniería)</div>
-            <div class="tl-price">$500</div>
-            <div class="tl-sell">VENDEMOS<br>UNA NUEVA FORMA DE PENSAR</div>
-          </div>
-          <div class="tl-col">
-            <div class="tl-head">ETAPA 3</div>
-            <div class="tl-name">ESCALAR</div>
-            <div class="tl-obj-k">OBJETIVO</div>
-            <div class="tl-obj">Construir equipo, delegar, procesos, dejar de ser el cuello de botella.</div>
-            <div class="tl-prod-k">PRODUCTO</div>
-            <div class="tl-prod">Mentoría de negocio 1:1.</div>
-            <div class="tl-price">$3.000</div>
-            <div class="tl-sell">VENDEMOS<br>ACELERACIÓN Y DIRECCIÓN</div>
-          </div>
-          <div class="tl-col">
-            <div class="tl-head">ETAPA 4</div>
-            <div class="tl-name">IMPACTO</div>
-            <div class="tl-obj-k">OBJETIVO</div>
-            <div class="tl-obj">Expandir marca, alianzas y posicionamiento.</div>
-            <div class="tl-prod-k">PRODUCTO</div>
-            <div class="tl-prod">Mastermind — grupo cerrado de pares.</div>
-            <div class="tl-price">$5.000</div>
-            <div class="tl-sell">VENDEMOS<br>MULTIPLICACIÓN Y POSICIONAMIENTO</div>
-          </div>
-          <div class="tl-col">
-            <div class="tl-head">ETAPA 5</div>
-            <div class="tl-name">PATRIMONIO</div>
-            <div class="tl-obj-k">OBJETIVO</div>
-            <div class="tl-obj">Multiplicar riqueza, invertir, crear legado.</div>
-            <div class="tl-prod-k">PRODUCTO</div>
-            <div class="tl-prod">Círculo privado por invitación: advisory, deal flow, experiencias.</div>
-            <div class="tl-price">$10.000</div>
-            <div class="tl-sell">VENDEMOS<br>MULTIPLICACIÓN Y LEGADO</div>
-          </div>
-        </div>
+        <p class="lede">Acompañamos la evolución del empresario en cada nivel. Cada producto es el puente entre una etapa y la siguiente — el detalle de cada etapa vive en el mapa de arriba.</p>
 
         <div class="principle-box">
           <div>
@@ -809,11 +930,11 @@
 
 
   <!-- ============ SECTION 4: NUESTRA FILOSOFÍA ============ -->
-  <div class="philosophy-section">
+  <div id="filosofia" class="philosophy-section">
 
     <div class="phil-topbar">
       <div class="phil-title">
-        <div class="eyebrow">Nuestra filosofía</div>
+        <div class="section-eyebrow">Nuestra filosofía</div>
         <h2>Formamos <span class="accent">empresarios</span>, no solo negocios</h2>
         <p class="phil-sub">Un sistema. Cinco etapas. Una misión: llevar al empresario a su próxima versión.</p>
       </div>
@@ -822,55 +943,16 @@
       </div>
     </div>
 
-    <!-- 5 etapas resumen -->
-    <div class="phil-etapas">
-      <div class="pe-card">
-        <div class="pe-num">ETAPA 1</div>
-        <div class="pe-name">Sobreviviendo</div>
-        <div class="pe-desc">Tu negocio depende 100% de ti. Vives en modo reacción.</div>
-        <div class="pe-foco-k">Foco principal</div>
-        <div class="pe-foco">Estabilidad y control</div>
-      </div>
-      <div class="pe-card">
-        <div class="pe-num">ETAPA 2</div>
-        <div class="pe-name">Crecer</div>
-        <div class="pe-desc">Ya tienes tracción, pero necesitas estructura, claridad y estrategia.</div>
-        <div class="pe-foco-k">Foco principal</div>
-        <div class="pe-foco">Rentabilidad y sistemas</div>
-      </div>
-      <div class="pe-card">
-        <div class="pe-num">ETAPA 3</div>
-        <div class="pe-name">Escalar</div>
-        <div class="pe-desc">Tu negocio es rentable. Ahora necesitas delegar y construir equipo.</div>
-        <div class="pe-foco-k">Foco principal</div>
-        <div class="pe-foco">Expansión y liderazgo</div>
-      </div>
-      <div class="pe-card">
-        <div class="pe-num">ETAPA 4</div>
-        <div class="pe-name">Impacto</div>
-        <div class="pe-desc">Tienes equipo sólido y procesos. Quieres expandir tu marca y alianzas.</div>
-        <div class="pe-foco-k">Foco principal</div>
-        <div class="pe-foco">Multiplicación y posicionamiento</div>
-      </div>
-      <div class="pe-card">
-        <div class="pe-num">ETAPA 5</div>
-        <div class="pe-name">Patrimonio</div>
-        <div class="pe-desc">Buscas multiplicar tu patrimonio, invertir y dejar un legado duradero.</div>
-        <div class="pe-foco-k">Foco principal</div>
-        <div class="pe-foco">Patrimonio y legado</div>
-      </div>
-    </div>
-
     <!-- conceptos clave -->
     <div class="phil-block">
       <h3>Conceptos clave que guían nuestra conversación</h3>
-      <div class="phil-grid-6">
-        <div class="phil-item"><div class="badge">1</div><h4>Las cinco etapas</h4><p>Todo empresario está en una etapa. El primer paso es reconocerla.</p></div>
-        <div class="phil-item"><div class="badge">2</div><h4>El cuello de botella</h4><p>No es el problema. Es el punto que limita todo.</p></div>
-        <div class="phil-item"><div class="badge">3</div><h4>La próxima versión</h4><p>No se trata solo de crecer, se trata de convertirte en tu siguiente versión.</p></div>
-        <div class="phil-item"><div class="badge">4</div><h4>La decisión clave</h4><p>Toda etapa tiene una decisión que cambia el juego.</p></div>
-        <div class="phil-item"><div class="badge">5</div><h4>El precio del siguiente nivel</h4><p>Cada etapa exige renunciar a algo para ganar más.</p></div>
-        <div class="phil-item"><div class="badge">6</div><h4>El empresario correcto</h4><p>No basta con tener una buena empresa. Debes convertirte en el empresario que esa empresa necesita.</p></div>
+      <div class="concept-grid">
+        <div class="concept-card"><div class="concept-num">1</div><h4 class="concept-title">Las cinco etapas</h4><p class="concept-desc">Todo empresario está en una etapa. El primer paso es reconocerla.</p></div>
+        <div class="concept-card"><div class="concept-num">2</div><h4 class="concept-title">El cuello de botella</h4><p class="concept-desc">No es el problema. Es el punto que limita todo.</p></div>
+        <div class="concept-card"><div class="concept-num">3</div><h4 class="concept-title">La próxima versión</h4><p class="concept-desc">No se trata solo de crecer, se trata de convertirte en tu siguiente versión.</p></div>
+        <div class="concept-card"><div class="concept-num">4</div><h4 class="concept-title">La decisión clave</h4><p class="concept-desc">Toda etapa tiene una decisión que cambia el juego.</p></div>
+        <div class="concept-card"><div class="concept-num">5</div><h4 class="concept-title">El precio del siguiente nivel</h4><p class="concept-desc">Cada etapa exige renunciar a algo para ganar más.</p></div>
+        <div class="concept-card"><div class="concept-num">6</div><h4 class="concept-title">El empresario correcto</h4><p class="concept-desc">No basta con tener una buena empresa. Debes convertirte en el empresario que esa empresa necesita.</p></div>
       </div>
     </div>
 
@@ -889,36 +971,36 @@
     <!-- 12 pilares -->
     <div class="phil-block">
       <h3>Los 12 pilares de nuestra filosofía</h3>
-      <div class="phil-grid-4">
-        <div class="phil-art"><div class="art-num">01</div><p>Tu empresa nunca crecerá por encima del empresario que la dirige.</p></div>
-        <div class="phil-art"><div class="art-num">02</div><p>Cada nivel de crecimiento exige una nueva versión del empresario.</p></div>
-        <div class="phil-art"><div class="art-num">03</div><p>No tienes un problema de información. Tienes un problema de decisiones.</p></div>
-        <div class="phil-art"><div class="art-num">04</div><p>Cada etapa exige habilidades diferentes.</p></div>
-        <div class="phil-art"><div class="art-num">05</div><p>El cuello de botella nunca está donde la mayoría cree.</p></div>
-        <div class="phil-art"><div class="art-num">06</div><p>Tu negocio es el reflejo de tus decisiones. No del algoritmo, no del gobierno, no de la competencia.</p></div>
-        <div class="phil-art"><div class="art-num">07</div><p>La rentabilidad siempre vence al ego.</p></div>
-        <div class="phil-art"><div class="art-num">08</div><p>Antes de hacer más, aprende a hacer mejor.</p></div>
-        <div class="phil-art"><div class="art-num">09</div><p>Todo crecimiento tiene un precio. Si quieres pasar de etapa, debes convertirte en otro empresario.</p></div>
-        <div class="phil-art"><div class="art-num">10</div><p>La velocidad importa.</p></div>
-        <div class="phil-art"><div class="art-num">11</div><p>Una mala decisión cuesta más que una buena mentoría.</p></div>
-        <div class="phil-art"><div class="art-num">12</div><p>El empresario que deja de evolucionar empieza a desaparecer.</p></div>
+      <div class="pilares-grid">
+        <div class="pilar-item"><div class="pilar-num">01</div><p class="pilar-text">Tu empresa nunca crecerá por encima del empresario que la dirige.</p></div>
+        <div class="pilar-item"><div class="pilar-num">02</div><p class="pilar-text">Cada nivel de crecimiento exige una nueva versión del empresario.</p></div>
+        <div class="pilar-item"><div class="pilar-num">03</div><p class="pilar-text">No tienes un problema de información. Tienes un problema de decisiones.</p></div>
+        <div class="pilar-item"><div class="pilar-num">04</div><p class="pilar-text">Cada etapa exige habilidades diferentes.</p></div>
+        <div class="pilar-item"><div class="pilar-num">05</div><p class="pilar-text">El cuello de botella nunca está donde la mayoría cree.</p></div>
+        <div class="pilar-item"><div class="pilar-num">06</div><p class="pilar-text">Tu negocio es el reflejo de tus decisiones. No del algoritmo, no del gobierno, no de la competencia.</p></div>
+        <div class="pilar-item"><div class="pilar-num">07</div><p class="pilar-text">La rentabilidad siempre vence al ego.</p></div>
+        <div class="pilar-item"><div class="pilar-num">08</div><p class="pilar-text">Antes de hacer más, aprende a hacer mejor.</p></div>
+        <div class="pilar-item"><div class="pilar-num">09</div><p class="pilar-text">Todo crecimiento tiene un precio. Si quieres pasar de etapa, debes convertirte en otro empresario.</p></div>
+        <div class="pilar-item"><div class="pilar-num">10</div><p class="pilar-text">La velocidad importa.</p></div>
+        <div class="pilar-item"><div class="pilar-num">11</div><p class="pilar-text">Una mala decisión cuesta más que una buena mentoría.</p></div>
+        <div class="pilar-item"><div class="pilar-num">12</div><p class="pilar-text">El empresario que deja de evolucionar empieza a desaparecer.</p></div>
       </div>
     </div>
 
     <!-- constitución del empresario -->
     <div class="phil-block">
       <h3>La constitución del empresario</h3>
-      <div class="phil-grid-5">
-        <div class="phil-art"><div class="art-num">ART. 1</div><p>El empresario asume la responsabilidad total de su empresa.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 2</div><p>Ninguna empresa crece por accidente.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 3</div><p>Toda empresa tiene un cuello de botella.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 4</div><p>Cada etapa exige una nueva versión del empresario.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 5</div><p>Las decisiones construyen empresas.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 6</div><p>La rentabilidad está por encima del ego.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 7</div><p>Primero se construye el empresario. Después la empresa.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 8</div><p>Nunca sacrifiques el largo plazo por resolver el corto.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 9</div><p>Todo crecimiento exige disciplina.</p></div>
-        <div class="phil-art"><div class="art-num">ART. 10</div><p>El aprendizaje sin ejecución no cambia empresas.</p></div>
+      <div class="const-grid">
+        <div class="const-item"><div class="const-num">ART. 1</div><p class="const-text">El empresario asume la responsabilidad total de su empresa.</p></div>
+        <div class="const-item"><div class="const-num">ART. 2</div><p class="const-text">Ninguna empresa crece por accidente.</p></div>
+        <div class="const-item"><div class="const-num">ART. 3</div><p class="const-text">Toda empresa tiene un cuello de botella.</p></div>
+        <div class="const-item"><div class="const-num">ART. 4</div><p class="const-text">Cada etapa exige una nueva versión del empresario.</p></div>
+        <div class="const-item"><div class="const-num">ART. 5</div><p class="const-text">Las decisiones construyen empresas.</p></div>
+        <div class="const-item"><div class="const-num">ART. 6</div><p class="const-text">La rentabilidad está por encima del ego.</p></div>
+        <div class="const-item"><div class="const-num">ART. 7</div><p class="const-text">Primero se construye el empresario. Después la empresa.</p></div>
+        <div class="const-item"><div class="const-num">ART. 8</div><p class="const-text">Nunca sacrifiques el largo plazo por resolver el corto.</p></div>
+        <div class="const-item"><div class="const-num">ART. 9</div><p class="const-text">Todo crecimiento exige disciplina.</p></div>
+        <div class="const-item"><div class="const-num">ART. 10</div><p class="const-text">El aprendizaje sin ejecución no cambia empresas.</p></div>
       </div>
     </div>
 
