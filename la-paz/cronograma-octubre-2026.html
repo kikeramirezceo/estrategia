@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cronograma La Paz · Octubre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0A; --card:#121212; --card2:#171717; --line:#2A2A2A;
+    --white:#FFFFFF; --muted:#8C8C8C; --gold:#DBAD30;
+    --reel:#DBAD30; --carrusel:#8E5BD6; --post:#E0413A; --historia:#3FD96B;
+    --f:'Inter Tight', system-ui, sans-serif;
+  }
+  @page{ size:A4 landscape; margin:0; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:var(--bg); color:var(--white); font-family:var(--f);
+    -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page{ width:297mm; height:210mm; padding:13mm 14mm 15mm; position:relative;
+    overflow:hidden; page-break-after:always; display:flex; flex-direction:column; }
+  .page:last-child{ page-break-after:auto; }
+
+  /* Header / footer */
+  .top{ display:flex; justify-content:space-between; align-items:flex-end;
+    border-bottom:1px solid var(--line); padding-bottom:4mm; margin-bottom:5mm; }
+  .eyebrow{ font-size:8.5pt; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:600; }
+  h1{ font-size:30pt; font-weight:800; letter-spacing:-.02em; line-height:1; }
+  h2{ font-size:19pt; font-weight:800; letter-spacing:-.01em; line-height:1.05; }
+  h3{ font-size:10pt; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:2.5mm; }
+  .sub{ color:var(--muted); font-size:9.5pt; margin-top:1.5mm; }
+  .foot{ position:absolute; left:14mm; right:14mm; bottom:6mm; display:flex; justify-content:space-between;
+    font-size:7pt; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
+
+  /* Legend */
+  .legend{ display:flex; gap:5mm; font-size:8pt; color:#cfcfcf; align-items:center; flex-wrap:wrap; }
+  .legend span{ display:inline-flex; align-items:center; gap:1.6mm; }
+  .dot{ width:2.6mm; height:2.6mm; border-radius:50%; display:inline-block; }
+  .tag{ font-size:6.2pt; font-weight:700; letter-spacing:.08em; padding:.3mm 1.3mm; border-radius:1mm;
+    border:1px solid var(--gold); color:var(--gold); }
+
+  /* Calendar */
+  .cal{ flex:1; display:grid; grid-template-columns:repeat(7,1fr); grid-template-rows:auto repeat(5,minmax(0,1fr)); gap:1.4mm; min-height:0; }
+  .dow{ font-size:7.5pt; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted);
+    padding:0 1.5mm 1mm; }
+  .day{ background:var(--card); border:1px solid var(--line); border-radius:2mm; padding:1.6mm 1.8mm;
+    display:flex; flex-direction:column; gap:1mm; min-height:0; }
+  .day.out{ background:transparent; border-style:dashed; opacity:.35; }
+  .day.past{ background:#0f0f0f; }
+  .day.today{ border:1.5px solid var(--gold); box-shadow:0 0 0 2px rgba(219,173,48,.12) inset; }
+  .day.light{ background:linear-gradient(180deg,#141414,#101810); }
+  .dnum{ display:flex; justify-content:space-between; align-items:center; font-size:11pt; font-weight:800; }
+  .dnum small{ font-size:6pt; font-weight:700; letter-spacing:.12em; color:var(--gold); text-transform:uppercase; }
+  .item{ font-size:6.9pt; line-height:1.18; padding:.8mm 1.2mm; border-radius:1mm; background:var(--card2);
+    border-left:2.2px solid var(--c); }
+  .item b{ display:block; font-size:6pt; letter-spacing:.1em; text-transform:uppercase; color:var(--c); margin-bottom:.3mm; }
+  .item .pauta{ color:var(--gold); font-weight:700; }
+  .prod{ margin-top:auto; font-size:6.1pt; color:#b9b9b9; line-height:1.2; border-top:1px dashed var(--line); padding-top:.8mm; }
+  .prod em{ font-style:normal; color:var(--gold); font-weight:700; }
+  .note{ font-size:6.5pt; color:var(--muted); line-height:1.25; }
+
+  /* Cover */
+  .cover-grid{ display:grid; grid-template-columns:1.15fr 1fr; gap:9mm; flex:1; }
+  .big{ font-size:44pt; font-weight:800; letter-spacing:-.03em; line-height:.95; }
+  .big span{ color:var(--gold); }
+  .lead{ font-size:11pt; color:#d6d6d6; line-height:1.45; margin-top:5mm; max-width:135mm; }
+  .stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; margin-top:8mm; }
+  .stat{ background:var(--card); border:1px solid var(--line); border-radius:2.5mm; padding:3.5mm; }
+  .stat .n{ font-size:24pt; font-weight:800; color:var(--c); line-height:1; }
+  .stat .l{ font-size:7.5pt; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:1.5mm; }
+  .phase{ background:var(--card); border:1px solid var(--line); border-radius:2.5mm; padding:4mm 4.5mm; margin-bottom:3mm; }
+  .phase .when{ font-size:7.5pt; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); font-weight:700; }
+  .phase .what{ font-size:12.5pt; font-weight:700; margin:1.2mm 0 1mm; }
+  .phase p{ font-size:8.8pt; color:#c9c9c9; line-height:1.4; }
+  .phase.hl{ border-color:var(--gold); }
+  .reels{ display:grid; grid-template-columns:repeat(6,1fr); gap:2.5mm; margin-top:auto; }
+  .r{ border-top:2px solid var(--gold); padding-top:2mm; }
+  .r .d{ font-size:8pt; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); }
+  .r .t{ font-size:8.5pt; margin-top:1mm; line-height:1.3; color:#d8d8d8; }
+
+  /* Tables */
+  .cols{ display:grid; grid-template-columns:1fr 1fr; gap:7mm; flex:1; }
+  table{ width:100%; border-collapse:collapse; font-size:8pt; }
+  th{ text-align:left; font-size:6.8pt; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+    font-weight:700; padding:1.6mm 2mm; border-bottom:1px solid var(--line); }
+  td{ padding:1.9mm 2mm; border-bottom:1px solid #1d1d1d; vertical-align:top; line-height:1.3; }
+  td.k{ font-weight:700; white-space:nowrap; }
+  td .muted{ color:var(--muted); }
+  .bar{ display:inline-block; width:1.6mm; height:3mm; border-radius:.6mm; background:var(--c); margin-right:1.6mm; vertical-align:-.4mm; }
+  .box{ background:var(--card); border:1px solid var(--line); border-radius:2.5mm; padding:4mm 4.5mm; }
+  .checks{ list-style:none; display:flex; flex-direction:column; gap:2.4mm; }
+  .checks li{ font-size:8.6pt; line-height:1.38; color:#d4d4d4; padding-left:6mm; position:relative; }
+  .checks li::before{ content:""; position:absolute; left:0; top:.6mm; width:3mm; height:3mm; border:1.2px solid var(--gold); border-radius:.8mm; }
+  .checks b{ color:var(--white); }
+  .when-chip{ display:inline-block; font-size:6.5pt; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--bg); background:var(--gold); border-radius:1mm; padding:.3mm 1.4mm; margin-right:1.2mm; }
+</style>
+</head>
+<body>
+
+<!-- ============ PÁGINA 1 · PORTADA ============ -->
+<section class="page">
+  <div class="top">
+    <div>
+      <div class="eyebrow">Cristalería La Paz · Plan de contenido</div>
+      <div class="sub">Campaña: Descubre lo extraordinario de La Paz para tu hogar</div>
+    </div>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--reel)"></i>Reel</span>
+      <span><i class="dot" style="background:var(--carrusel)"></i>Carrusel</span>
+      <span><i class="dot" style="background:var(--post)"></i>Post</span>
+      <span><i class="dot" style="background:var(--historia)"></i>Historia</span>
+    </div>
+  </div>
+
+  <div class="cover-grid">
+    <div>
+      <div class="big">Cronograma<br><span>Octubre 2026</span></div>
+      <p class="lead">Calendario reorganizado desde el miércoles 7 de octubre. Los reels se editan de uno en uno y, mientras tanto,
+        el feed sigue activo con piezas sencillas. Así no queda ningún día vacío y se respetan las fechas especiales del mes.</p>
+      <div class="stats">
+        <div class="stat" style="--c:var(--reel)"><div class="n">6</div><div class="l">Reels</div></div>
+        <div class="stat" style="--c:var(--carrusel)"><div class="n">3</div><div class="l">Carruseles</div></div>
+        <div class="stat" style="--c:var(--post)"><div class="n">3</div><div class="l">Posts</div></div>
+        <div class="stat" style="--c:var(--historia)"><div class="n">8</div><div class="l">Historias</div></div>
+      </div>
+      <p class="sub" style="margin-top:4mm">6 piezas con pauta (3 reels + 3 carruseles) · Fechas fijas: 15 y 16 oct (Alimentación),
+        20 oct (Chef), 25 oct (Pasta)</p>
+    </div>
+
+    <div>
+      <h3>Cómo se organiza el mes</h3>
+      <div class="phase hl">
+        <div class="when">Mié 7 oct · Arranque</div>
+        <div class="what">Sale el Reel 2</div>
+        <p>«En La Paz encuentras todo para tu hogar». Pieza de pauta: queda corriendo en anuncios los días siguientes.</p>
+      </div>
+      <div class="phase">
+        <div class="when">Jue 8 – Lun 12 oct · Días sencillos</div>
+        <div class="what">Historias, posts y un solo carrusel</div>
+        <p>Diseño sostiene el feed con piezas sencillas. Edición de video se dedica solo a los reels grandes, empezando por el del café.</p>
+      </div>
+      <div class="phase">
+        <div class="when">Mar 13 – Jue 29 oct · Ritmo normal</div>
+        <div class="what">Un reel cada 2 o 3 días</div>
+        <p>Entre reel y reel salen carruseles, posts e historias. Cada reel tiene sus días de edición y uno de revisión del cliente.</p>
+      </div>
+    </div>
+  </div>
+  <h3 style="margin-top:6mm">Los 6 reels del mes</h3>
+  <div class="reels">
+    <div class="r"><div class="d">Mié 7</div><div class="t">Reel 2 · En La Paz encuentras todo</div></div>
+    <div class="r"><div class="d">Mar 13</div><div class="t">Reel 1 · Cuatro formas de vivir el café</div></div>
+    <div class="r"><div class="d">Vie 16</div><div class="t">Reel 5 · Claudia Dávila</div></div>
+    <div class="r"><div class="d">Dom 18</div><div class="t">Reel 3 · 3 productos que vas a querer</div></div>
+    <div class="r"><div class="d">Sáb 24</div><div class="t">Reel 4 · Productos para cada espacio</div></div>
+    <div class="r"><div class="d">Jue 29</div><div class="t">Reel 6 · Takashi y las mascotas</div></div>
+  </div>
+  <div class="foot"><span>Quiroz Agencia · quirozagencia.com</span><span>Cronograma octubre 2026 · 1/3</span></div>
+</section>
+
+<!-- ============ PÁGINA 2 · CALENDARIO ============ -->
+<section class="page">
+  <div class="top">
+    <div>
+      <div class="eyebrow">Calendario de publicación</div>
+      <h2>Octubre 2026</h2>
+    </div>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--reel)"></i>Reel</span>
+      <span><i class="dot" style="background:var(--carrusel)"></i>Carrusel</span>
+      <span><i class="dot" style="background:var(--post)"></i>Post</span>
+      <span><i class="dot" style="background:var(--historia)"></i>Historia</span>
+      <span><span class="tag">PAUTA</span></span>
+      <span style="color:var(--muted)">✂ = qué se está editando ese día</span>
+    </div>
+  </div>
+  <div class="cal" id="cal"></div>
+  <div class="foot"><span>Quiroz Agencia · quirozagencia.com</span><span>Cronograma octubre 2026 · 2/3</span></div>
+</section>
+
+<!-- ============ PÁGINA 3 · PRODUCCIÓN ============ -->
+<section class="page">
+  <div class="top">
+    <div>
+      <div class="eyebrow">Tiempos de producción y aprobación</div>
+      <h2>Quién hace qué, y para cuándo</h2>
+    </div>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h3>Edición de video · un reel a la vez</h3>
+      <table>
+        <tr><th>Reel</th><th>Edita</th><th>Cliente revisa</th><th>Publica</th></tr>
+        <tr><td class="k"><i class="bar" style="--c:var(--reel)"></i>Reel 1 · Café</td><td>Jue 8 – Dom 11</td><td>Lun 12</td><td class="k">Mar 13</td></tr>
+        <tr><td class="k"><i class="bar" style="--c:var(--reel)"></i>Reel 5 · Claudia<br><span class="muted">+ historia Claudia</span></td><td>Lun 12 – Mar 13</td><td>Mié 14<br><span class="muted">ajustes jue 15</span></td><td class="k">Vie 16</td></tr>
+        <tr><td class="k"><i class="bar" style="--c:var(--reel)"></i>Reel 3 · 3 productos</td><td>Mié 14 – Jue 15</td><td>Vie 16</td><td class="k">Dom 18</td></tr>
+        <tr><td class="k"><i class="bar" style="--c:var(--reel)"></i>Reel 4 · Espacios</td><td>Sáb 17 – Mar 20</td><td>Mié 21</td><td class="k">Sáb 24</td></tr>
+        <tr><td class="k"><i class="bar" style="--c:var(--reel)"></i>Reel 6 · Takashi</td><td>Jue 22 – Lun 26</td><td>Mar 27</td><td class="k">Jue 29</td></tr>
+      </table>
+
+      <h3 style="margin-top:6mm">Diseño · envíos al cliente</h3>
+      <table>
+        <tr><th>Se envía</th><th>Piezas</th><th>Cliente aprueba</th></tr>
+        <tr><td class="k">Mié 7</td><td>Historia mascota</td><td>Jue 8 a.m.</td></tr>
+        <tr><td class="k">Jue 8</td><td>Post 1 · Historia Polimes · Carrusel 1 · Post 2 · Historia sartén</td><td>Vie 9 a.m.</td></tr>
+        <tr><td class="k">Lun 12</td><td>Historia encuesta café · Carrusel 3</td><td>Mar 13</td></tr>
+        <tr><td class="k">Jue 15</td><td>Post 3 Chef · Historia Chef · Carrusel 2</td><td>Vie 16</td></tr>
+        <tr><td class="k">Lun 19</td><td>Historias horno y pasta</td><td>Mar 20</td></tr>
+      </table>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:4mm">
+      <div class="box">
+        <h3>Lo que necesitamos del cliente</h3>
+        <ul class="checks">
+          <li><span class="when-chip">Hoy</span><b>Fotos en fondo limpio:</b> confirmar que existen la de la copa (Post 2, dom 11) y las de producto del Carrusel 1.
+            Si falta la copa, el domingo 11 sale la historia del sartén y el Post 2 pasa al lunes 12.</li>
+          <li><span class="when-chip">Lun 12</span><b>Reel del café:</b> aprobar que se quite «1 de octubre» y que el cierre sea «¿Y tú, cuál prefieres?».</li>
+          <li><span class="when-chip">Antes del jue 15</span><b>Reel 4:</b> confirmar la versión: «Productos para cada espacio» o «¿Por qué las abuelas cocinaban en hierro?».</li>
+          <li><span class="when-chip">Siempre</span><b>Una sola ronda de ajustes</b> por pieza, con comentarios en el documento maestro.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Pauta · fechas para Iván</h3>
+        <table>
+          <tr><th>Publica</th><th>Pieza</th></tr>
+          <tr><td class="k">Mié 7</td><td><i class="bar" style="--c:var(--reel)"></i>Reel 2 · En La Paz encuentras todo</td></tr>
+          <tr><td class="k">Sáb 10</td><td><i class="bar" style="--c:var(--carrusel)"></i>Carrusel 1 · 5 cosas que no sabías</td></tr>
+          <tr><td class="k">Mar 13</td><td><i class="bar" style="--c:var(--reel)"></i>Reel 1 · Cuatro formas de vivir el café</td></tr>
+          <tr><td class="k">Jue 15</td><td><i class="bar" style="--c:var(--carrusel)"></i>Carrusel 3 · Alimentarte mejor</td></tr>
+          <tr><td class="k">Dom 18</td><td><i class="bar" style="--c:var(--reel)"></i>Reel 3 · 3 productos que vas a querer</td></tr>
+          <tr><td class="k">Mié 21</td><td><i class="bar" style="--c:var(--carrusel)"></i>Carrusel 2 · 5 productos para tu cocina</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Quiroz Agencia · quirozagencia.com</span><span>Cronograma octubre 2026 · 3/3</span></div>
+</section>
+
+<script>
+  // type: reel | carrusel | post | historia ; p = pauta
+  const PUB = {
+    7:[["reel","Reel 2 · En La Paz encuentras todo",1]],
+    8:[["historia","Más de lo que imaginas (mascota)"]],
+    9:[["post","Post 1 · No todos los recipientes funcionan igual"],["historia","Organiza tu día (Polimes)"]],
+    10:[["carrusel","Carrusel 1 · 5 cosas que no sabías",1]],
+    11:[["post","Post 2 · Una copa no es solo una copa"]],
+    12:[["historia","Soluciones para tu cocina (sartén)"]],
+    13:[["reel","Reel 1 · Cuatro formas de vivir el café",1]],
+    14:[["historia","Encuesta · ¿Cómo tomas el café?"]],
+    15:[["carrusel","Carrusel 3 · Alimentarte mejor",1]],
+    16:[["reel","Reel 5 · Claudia Dávila"]],
+    17:[["historia","Caja de preguntas con Claudia"]],
+    18:[["reel","Reel 3 · 3 productos que vas a querer",1]],
+    20:[["post","Post 3 · Día del Chef"],["historia","Día del Chef"]],
+    21:[["carrusel","Carrusel 2 · 5 productos para tu cocina",1]],
+    22:[["historia","Horno 5 en 1"]],
+    24:[["reel","Reel 4 · Productos para cada espacio"]],
+    25:[["historia","Día de la Pasta"]],
+    29:[["reel","Reel 6 · Takashi y las mascotas"]],
+  };
+  const EDIT = {8:"Reel 1",9:"Reel 1",10:"Reel 1",11:"Reel 1",12:"Reel 5",13:"Reel 5",14:"Reel 3",15:"Reel 3",
+    17:"Reel 4",18:"Reel 4",19:"Reel 4",20:"Reel 4",22:"Reel 6",23:"Reel 6",24:"Reel 6",25:"Reel 6",26:"Reel 6"};
+  const REVIEW = {12:"Reel 1",14:"Reel 5",16:"Reel 3",21:"Reel 4",27:"Reel 6"};
+  const SPECIAL = {15:"Alimentación",16:"Alimentación",20:"Día del Chef",25:"Día Pasta"};
+  const NAMES = {reel:"Reel",carrusel:"Carrusel",post:"Post",historia:"Historia"};
+
+  const cal = document.getElementById("cal");
+  ["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"].forEach(d=>cal.insertAdjacentHTML("beforeend",`<div class="dow">${d}</div>`));
+  // Oct 1, 2026 is a Thursday → grid starts Mon Sep 28
+  const cells = [28,29,30].map(n=>({n,out:true}));
+  for(let d=1; d<=31; d++) cells.push({n:d});
+  cells.push({n:1,out:true});
+  cells.forEach(c=>{
+    if(c.out){ cal.insertAdjacentHTML("beforeend",`<div class="day out"><div class="dnum">${c.n}</div></div>`); return; }
+    const d=c.n, items=PUB[d]||[];
+    let cls="day";
+    if(d<7) cls+=" past";
+    if(d===7) cls+=" today";
+    if(d>=8 && d<=12) cls+=" light";
+    let label = d===7 ? "Arranque" : (SPECIAL[d]||"");
+    let html=`<div class="${cls}"><div class="dnum">${d}<small>${label}</small></div>`;
+    if(d<7) html+=`<div class="note">${d===1?"Evento Desafía tu destino · se reprograma lo previsto para esta semana":""}</div>`;
+    items.forEach(([t,title,p])=>{
+      html+=`<div class="item" style="--c:var(--${t})"><b>${NAMES[t]}${p?' · <span class="pauta">Pauta</span>':''}</b>${title}</div>`;
+    });
+    const prod=[];
+    if(EDIT[d]) prod.push(`✂ Edita <em>${EDIT[d]}</em>`);
+    if(REVIEW[d]) prod.push(`👁 Cliente revisa <em>${REVIEW[d]}</em>`);
+    if(prod.length) html+=`<div class="prod">${prod.join("<br>")}</div>`;
+    html+=`</div>`;
+    cal.insertAdjacentHTML("beforeend",html);
+  });
+</script>
+</body>
+</html>
